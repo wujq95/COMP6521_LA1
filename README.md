@@ -19,9 +19,9 @@ Deduplicating and Merging data
 2. compute the smallest element s and its sublist l from the first element of these sublists.
 3. check whether the last element of the buffer list (A) equal this element or not:  
    if equal:  
-   &nbsp;&nbsp;&nbsp;&nbsp; compute the newest date n then substitude the last element as the newest data. #A[-1] = n  
+   &nbsp;&nbsp;&nbsp;&nbsp; compute the newest date n then substitude the last element as the newest data.  #A[-1] = n  
    else:  
-   &nbsp;&nbsp;&nbsp;&nbsp; append this element to buffer list. #A.append(s)
+   &nbsp;&nbsp;&nbsp;&nbsp; append this element to buffer list.  #A.append(s)
 4. pop the first element from l and append a new element from disk.  
    l.pop(0)  
    l.append(new_element)
