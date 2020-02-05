@@ -44,7 +44,7 @@ public class Phase1 {
                     subList.add(line);
                 }
             }
-            sort.sortData(subList);
+            sort.quickSort(subList,0,subList.size()-1);
             phase.OutputFile(subList);
         }
         br.close();

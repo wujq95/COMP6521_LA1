@@ -15,6 +15,5 @@ public class Main {
         phase1.start();
         Date date2 = new Date();
         System.out.println(date2.getTime()-date1.getTime());
-
     }
 }
