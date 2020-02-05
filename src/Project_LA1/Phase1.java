@@ -12,14 +12,14 @@ public class Phase1 {
      */
     public void start() throws IOException {
 
-        FileReader fr = new FileReader(Configuration.TEXT1_PATH);
+        FileReader fr = new FileReader(Configuration.TEXT2_PATH);
         BufferedReader br = new BufferedReader(fr);
         Phase1 phase = new Phase1();
         Sort sort  = new Sort();
 
         //calculate the size of the file
         int sum = 0;
-        FileReader fr2 = new FileReader(Configuration.TEXT1_PATH);
+        FileReader fr2 = new FileReader(Configuration.TEXT2_PATH);
         BufferedReader br2 = new BufferedReader(fr2);
         while((br2.readLine())!=null){
             sum++;

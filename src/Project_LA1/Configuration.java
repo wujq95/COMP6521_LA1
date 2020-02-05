@@ -11,6 +11,6 @@ public class Configuration {
 
     //configure the input and output file path
     static String TEXT1_PATH = "/Users/wujiaqi/IdeaProjects/COMP6521/NonRepeatedRadomNumGenerator/namelist.txt";
-    static String TEXT2_PATH = "";
+    static String TEXT2_PATH = "/Users/wujiaqi/IdeaProjects/COMP6521_LA1/sample.txt";
     static String OUTPUT_PATH = "/Users/wujiaqi/IdeaProjects/COMP6521_LA1/output.txt";
 }
