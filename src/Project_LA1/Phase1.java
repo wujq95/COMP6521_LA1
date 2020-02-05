@@ -22,6 +22,7 @@ public class Phase1 {
         int blockNum = Configuration.BLOCK_SIZE/Configuration.TUPLE_SIZE;
         int onceDealNum = Configuration.Memory_SIZE%Configuration.BLOCK_SIZE==0?Configuration.Memory_SIZE/Configuration.BLOCK_SIZE:Configuration.Memory_SIZE/Configuration.BLOCK_SIZE+1;
         int times = sum%onceDealNum==0?sum/onceDealNum:sum/onceDealNum+1;
+
         FileReader fr = new FileReader(Configuration.TEXT1_PATH);
         BufferedReader br = new BufferedReader(fr);
         Phase1 phase = new Phase1();
@@ -50,6 +51,11 @@ public class Phase1 {
     }
 
 
+    /**
+     * output the sorted data
+     * @param subList
+     * @throws IOException
+     */
     public void OutputFile(List<String> subList) throws IOException {
 
         File file = new File("output.txt");
