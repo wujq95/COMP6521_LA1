@@ -12,6 +12,12 @@ public class Phase1 {
      */
     public void start() throws IOException {
 
+        FileReader fr = new FileReader(Configuration.TEXT1_PATH);
+        BufferedReader br = new BufferedReader(fr);
+        Phase1 phase = new Phase1();
+        Sort sort  = new Sort();
+
+        //calculate the size of the file
         int sum = 0;
         FileReader fr2 = new FileReader(Configuration.TEXT1_PATH);
         BufferedReader br2 = new BufferedReader(fr2);
@@ -19,20 +25,17 @@ public class Phase1 {
             sum++;
         }
 
+        //calculate the memory dealing times according to the size of block and memory
         int blockNum = Configuration.BLOCK_SIZE/Configuration.TUPLE_SIZE;
         int onceDealNum = Configuration.Memory_SIZE%Configuration.BLOCK_SIZE==0?Configuration.Memory_SIZE/Configuration.BLOCK_SIZE:Configuration.Memory_SIZE/Configuration.BLOCK_SIZE+1;
         int times = sum%onceDealNum==0?sum/onceDealNum:sum/onceDealNum+1;
 
-        FileReader fr = new FileReader(Configuration.TEXT1_PATH);
-        BufferedReader br = new BufferedReader(fr);
-        Phase1 phase = new Phase1();
-        Sort sort  = new Sort();
-
 
         //clear the file
-        FileWriter fileWriter  = new FileWriter("/Users/wujiaqi/IdeaProjects/COMP6521_LA1/output.txt");
+        FileWriter fileWriter  = new FileWriter(Configuration.OUTPUT_PATH);
         fileWriter.write("");
 
+        //add the data into the sublist
         String line = "";
         for(int i=0;i<times;i++){
             List<String> subList = new ArrayList<>();
@@ -46,10 +49,7 @@ public class Phase1 {
         }
         br.close();
         fr.close();
-
-
     }
-
 
     /**
      * output the sorted data
@@ -57,13 +57,9 @@ public class Phase1 {
      * @throws IOException
      */
     public void OutputFile(List<String> subList) throws IOException {
-
-        File file = new File("output.txt");
-        if(!file.exists()){
-            file.createNewFile();
-        }
-        FileWriter fw  = new FileWriter("/Users/wujiaqi/IdeaProjects/COMP6521_LA1/output.txt",true);
+        FileWriter fw  = new FileWriter(Configuration.OUTPUT_PATH,true);
         PrintWriter pw = new PrintWriter(fw);
+        //output every element in the sublist
         for(String str:subList){
             pw.println(str);
             pw.flush();
@@ -75,6 +71,5 @@ public class Phase1 {
         }
         pw.close();
         fw.close();
-
     }
 }

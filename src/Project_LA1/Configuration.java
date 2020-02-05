@@ -9,7 +9,8 @@ public class Configuration {
     final static int BLOCK_SIZE = 4000;
     final static int Memory_SIZE = 10 * M;
 
+    //configure the input and output file path
     static String TEXT1_PATH = "/Users/wujiaqi/IdeaProjects/COMP6521/NonRepeatedRadomNumGenerator/namelist.txt";
     static String TEXT2_PATH = "";
-    static String OUTPUT_PATH = "";
+    static String OUTPUT_PATH = "/Users/wujiaqi/IdeaProjects/COMP6521_LA1/output.txt";
 }
