@@ -34,6 +34,7 @@ public class Phase1 {
         //clear the file
         FileWriter fileWriter  = new FileWriter(Configuration.OUTPUT_PATH);
         fileWriter.write("");
+        fileWriter.close();
 
         //add the data into the sublist
         String line = "";
