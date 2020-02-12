@@ -9,6 +9,11 @@ import java.util.Random;
 
 public class DataGenerator {
 
+    /**
+     * data generator
+     * @param args
+     * @throws IOException
+     */
     public static void main(String[] args) throws IOException {
         String PATH = "/Users/wujiaqi/IdeaProjects/COMP6521_LA1/generator2.txt";
         FileWriter fwClear  = new FileWriter(PATH);
