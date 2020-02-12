@@ -11,6 +11,8 @@ public class Configuration {
     final static int BLOCK_NUM = BLOCK_SIZE/TUPLE_SIZE;
     final static int ONCE_DEAL_NUM = MEMORY_SIZE%BLOCK_SIZE==0?MEMORY_SIZE/BLOCK_SIZE:MEMORY_SIZE/BLOCK_SIZE+1;
     final static int TUPLENUM = BLOCK_NUM*ONCE_DEAL_NUM;
+    static int sumNum = 0;
+    static int timeNum = 0;
 
     //configure the input and output file path
     static String TEXT1_PATH = "/Users/wujiaqi/IdeaProjects/COMP6521_LA1/sample.txt";

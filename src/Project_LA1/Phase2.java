@@ -8,9 +8,9 @@ public class Phase2 {
     public void start() throws IOException{
         FileReader fr = new FileReader(Configuration.OUTPUT_PATH);
         BufferedReader br = new BufferedReader(fr);
-        int sublists_num = Configuration.times;
+        int sublists_num = Configuration.timeNum;
         int sub_buff_num = sublists_num + 1;
-        int sublists_size = Configuration.sum / sublists_num;
+        int sublists_size = Configuration.sumNum / sublists_num;
         int memory_sublists_size = Configuration.MEMORY_SIZE / sub_buff_num / Configuration.TUPLE_SIZE;
         List <String> memory_sublists_list = new ArrayList<String>();
         List <String> buffer_list = new ArrayList<String>();

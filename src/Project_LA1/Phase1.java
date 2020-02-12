@@ -25,8 +25,10 @@ public class Phase1 {
         while((br2.readLine())!=null){
             sum++;
         }
+        Configuration.sumNum = sum;
         fr2.close();
         int times = sum%Configuration.TUPLENUM==0?sum/Configuration.TUPLENUM:sum/Configuration.TUPLENUM+1;
+        Configuration.timeNum = times;
         //clear the file
         FileWriter fileWriter  = new FileWriter(Configuration.OUTPUT_PATH);
         fileWriter.write("");
