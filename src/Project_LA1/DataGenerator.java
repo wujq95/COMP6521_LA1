@@ -2,6 +2,7 @@ package Project_LA1;
 
 import java.io.FileWriter;
 import java.io.IOException;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -66,9 +67,16 @@ public class DataGenerator {
         sb.append("-");
         Integer dayId = random.nextInt(day.length);
         sb.append(dayList.get(dayId));
-        sb.append(getRandomString(5));
-        sb.append(" ");
-        sb.append(getRandomString(15));
+        String[] firstName  = new String[]{"Ann","Peter","Bob","Nick","Dick","Linda","Maya","Lynn","Sam","Tim","Angle","Laya","Will"};
+        String[] lastName  = new String[]{"Ann","Peter","Bob","Nick","Dick","Linda","Maya","Lynn","Sam","Tim","Angle","Laya","Will"};
+        int firstNameId = random.nextInt(firstName.length);
+        int lastNameId = random.nextInt(lastName.length);
+        sb.append(firstName[firstNameId]);
+        sb.append("   ");
+        sb.append(lastName[lastNameId]);
+        for(int i=0;i<25-firstName[firstNameId].length()-lastName[lastNameId].length()-3;i++){
+            sb.append(" ");
+        }
         int t=5;
         while(t>0){
             sb.append(" ");
@@ -85,8 +93,17 @@ public class DataGenerator {
             sb.append(sinStr.charAt(random.nextInt(10)));
         }
         sb.append(" ");
-        sb.append(getRandomString(35));
-        for(int i=0;i<9;i++){
+        String[] street = new String[]{"Tochgelly WV 25866 South",
+                                        "Lilburn GA 30048 South",
+                                        "New York City NY",
+                                        "Kinsman IL 60437 Midwest",
+                                        "Punxsutawney PA 15767",
+                                        "Mebane NC 27302 South",
+                                        "Gorman TX 76454 South"};
+        int streetId  =random.nextInt(street.length);
+        String streetName = street[streetId];
+        sb.append(streetName);
+        for(int i=0;i<35-streetName.length();i++){
             sb.append(" ");
         }
         return sb.toString();
