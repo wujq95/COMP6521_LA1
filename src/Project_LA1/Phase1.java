@@ -18,12 +18,14 @@ public class Phase1 {
         Sort sort  = new Sort();
 
         //calculate the size of the file
+        //need to be optimized(if memory is full then deal with the data and clear the buffer, then deal with new data)
         int sum = 0;
         FileReader fr2 = new FileReader(Configuration.TEXT2_PATH);
         BufferedReader br2 = new BufferedReader(fr2);
         while((br2.readLine())!=null){
             sum++;
         }
+        fr2.close();
 
         //calculate the memory dealing times according to the size of block and memory
         int blockNum = Configuration.BLOCK_SIZE/Configuration.TUPLE_SIZE;
