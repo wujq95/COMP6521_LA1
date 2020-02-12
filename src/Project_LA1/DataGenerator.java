@@ -23,6 +23,11 @@ public class DataGenerator {
         fw.close();
     }
 
+    /**
+     * data generator
+     * @param length
+     * @return
+     */
     public static String getRandomString(int length){
         String str="abcdefghijklmnopqrstuvwxyz";
         Random random=new Random();
