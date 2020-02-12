@@ -26,14 +26,7 @@ public class Phase1 {
             sum++;
         }
         fr2.close();
-
-        //calculate the memory dealing times according to the size of block and memory
-        int blockNum = Configuration.BLOCK_SIZE/Configuration.TUPLE_SIZE;
-        int onceDealNum = Configuration.Memory_SIZE%Configuration.BLOCK_SIZE==0?Configuration.Memory_SIZE/Configuration.BLOCK_SIZE:Configuration.Memory_SIZE/Configuration.BLOCK_SIZE+1;
-        int tupleNum = blockNum*onceDealNum;
-        int times = sum%onceDealNum==0?sum/tupleNum:sum/tupleNum+1;
-
-
+        int times = sum%Configuration.TUPLENUM==0?sum/Configuration.TUPLENUM:sum/Configuration.TUPLENUM+1;
         //clear the file
         FileWriter fileWriter  = new FileWriter(Configuration.OUTPUT_PATH);
         fileWriter.write("");
@@ -43,7 +36,7 @@ public class Phase1 {
         String line = "";
         for(int i=0;i<times;i++){
             List<String> subList = new ArrayList<>();
-            for(int j=0;j<onceDealNum;j++){
+            for(int j=0;j<Configuration.ONCE_DEAL_NUM;j++){
                 if((line = br.readLine())!=null){
                     subList.add(line);
                 }
