@@ -30,7 +30,8 @@ public class Phase1 {
         //calculate the memory dealing times according to the size of block and memory
         int blockNum = Configuration.BLOCK_SIZE/Configuration.TUPLE_SIZE;
         int onceDealNum = Configuration.Memory_SIZE%Configuration.BLOCK_SIZE==0?Configuration.Memory_SIZE/Configuration.BLOCK_SIZE:Configuration.Memory_SIZE/Configuration.BLOCK_SIZE+1;
-        int times = sum%onceDealNum==0?sum/onceDealNum:sum/onceDealNum+1;
+        int tupleNum = blockNum*onceDealNum;
+        int times = sum%onceDealNum==0?sum/tupleNum:sum/tupleNum+1;
 
 
         //clear the file
