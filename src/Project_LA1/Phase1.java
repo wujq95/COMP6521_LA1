@@ -27,18 +27,14 @@ public class Phase1 {
         }
         Configuration.sumNum = sum;
         fr2.close();
-        int times = sum%Configuration.TUPLENUM==0?sum/Configuration.TUPLENUM:sum/Configuration.TUPLENUM+1;
+        int times = sum%Configuration.TUPLE_NUM==0?sum/Configuration.TUPLE_NUM:sum/Configuration.TUPLE_NUM+1;
         Configuration.timeNum = times;
-        //clear the file
-        FileWriter fileWriter  = new FileWriter(Configuration.OUTPUT_PATH);
-        fileWriter.write("");
-        fileWriter.close();
 
         //add the data into the sublist
         String line = "";
         for(int i=0;i<times;i++){
             List<String> subList = new ArrayList<>();
-            for(int j=0;j<Configuration.ONCE_DEAL_NUM;j++){
+            for(int j=0;j<Configuration.TUPLE_NUM;j++){
                 if((line = br.readLine())!=null){
                     subList.add(line);
                 }
@@ -62,11 +58,6 @@ public class Phase1 {
         for(String str:subList){
             pw.println(str);
             pw.flush();
-        }
-        int t=10;
-        while(t>0){
-            pw.println("---------");
-            t--;
         }
         pw.close();
         fw.close();
