@@ -1,5 +1,8 @@
 package Project_LA1;
 
+/**
+ * configuration class
+ */
 public class Configuration {
 
     //configure the size of block, memory and others
