@@ -1,4 +1,5 @@
 package Project_LA1;
+import java.awt.desktop.SystemSleepEvent;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -10,13 +11,9 @@ public class Phase2 {
         int[] param = phase2.Config();
         FileReader fr = new FileReader(Configuration.PHASE2_ORIGINAL);
         BufferedReader br = new BufferedReader(fr);
-//        int sublists_num = param[0];
-        int sublists_num = 100;
-//        int sublists_size = param[1];
-        int sublists_size = 200;
-        int memory_sublists_size = 150;     //内存中每个sublist存放数量
-//        int memory_sublists_size = 50;
-//        System.out.printf("%d,%d,%d",sublists_num,sublists_size,memory_sublists_size);
+        int sublists_num = param[0];
+        int sublists_size = param[1];
+        int memory_sublists_size = param[2];     //内存中每个sublist存放数量
         List <String> sublist_list = new ArrayList<>();
         List <List<String>> memory_sublists_list = new ArrayList<List<String>>();
         int[] disk_index = new int[sublists_num];
@@ -86,7 +83,7 @@ public class Phase2 {
             }
 //            System.out.println(max_index);
             max_line = memory_sublists_list.get(max_index).get(0);
-//            System.out.println(max_line);
+            System.out.println(max_line);
             int buffer_size = buffer_list.size();
             if (buffer_size==0){
                 buffer_list.add(max_line);
@@ -103,7 +100,7 @@ public class Phase2 {
                 }
             }
             if (buffer_size+1 == sublists_size){
-                System.out.println(buffer_list);
+//                System.out.println(buffer_list);
                 max.OutputFile(buffer_list);
                 buffer_list = new ArrayList<String>();
             }
@@ -130,7 +127,7 @@ public class Phase2 {
 //            }
         }
         if (buffer_list != null){
-            System.out.println(buffer_list);
+//            System.out.println(buffer_list);
             max.OutputFile(buffer_list);
         }
 
@@ -145,13 +142,14 @@ public class Phase2 {
             sum++;
         }
         fr2.close();
-        System.out.println(Configuration.TUPLE_NUM);
+        System.out.println(sum);
         int sublists_num = sum%Configuration.TUPLE_NUM==0?sum/Configuration.TUPLE_NUM:sum/Configuration.TUPLE_NUM+1;
-        int sublists_size = sum / sublists_num;
+        int sublists_size = sum%sublists_num==0? sum/sublists_num : sum/sublists_num+1;
         int memory_sublists_size = Configuration.TUPLE_NUM;
         param[0] = sublists_num;
-        param[1] = sublists_size;
-        param[2] = memory_sublists_size;
+        param[1] = sum/sublists_num;
+        param[2] = param[1]/2;
+        System.out.println(Arrays.toString(param));
         return param;
     }
     public static void main(String[] args) throws IOException {
