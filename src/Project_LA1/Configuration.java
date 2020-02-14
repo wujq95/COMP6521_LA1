@@ -15,9 +15,9 @@ public class Configuration {
     static int timeNum = 0;
 
     //configure the input and output file path
-    static String TEXT1_PATH = "src/Data_Files/sample1.txt";
-    static String TEXT2_PATH = "src/Data_Files/sample2.txt";
-    static String OUTPUT_PATH = "src/Data_Files/phase2_original.txt";
+    public static String TEXT1_PATH = "/Users/wujiaqi/IdeaProjects/COMP6521_LA1/generator3.txt";
+    public static String TEXT2_PATH = "/Users/wujiaqi/IdeaProjects/COMP6521_LA1/generator4.txt";
+    public static String OUTPUT_PATH = "/Users/wujiaqi/IdeaProjects/COMP6521_LA1/output.txt";
     static String PHASE2_ORIGINAL = "src/Data_Files/phase2_original.txt";
     static String PHASE2_OUTPUT = "src/Data_Files/phase2_output.txt";
 }
