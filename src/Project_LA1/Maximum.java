@@ -27,25 +27,26 @@ public class Maximum {
         return max_index;
     }
 
-    public String Disk_Line(int[] disk_index, int index,int sublists_size) throws IOException{
-        FileReader fr = new FileReader(Configuration.PHASE2_ORIGINAL);
-        BufferedReader br = new BufferedReader(fr);
-        String disk_line = "";
-        int index_num = disk_index[index];
-        if (index_num + 1 <= (index+1)*sublists_size){
-            int lines = 0;
-            String txt = br.readLine();
-            while (txt != null){
-                if (lines == index_num){
-                    disk_line = txt;
-                    break;
-                }
-                txt = br.readLine();
-                lines ++;
-            }
-        }
-        return disk_line;
-    }
+//    public String Disk_Line(int[] disk_index, int index,int sublists_size) throws IOException{
+//        FileReader fr = new FileReader(Configuration.PHASE2_ORIGINAL);
+//        BufferedReader br = new BufferedReader(fr);
+//        String disk_line = "";
+//        int index_num = disk_index[index];
+//        if (index_num + 1 <= (index+1)*sublists_size){
+//            int lines = 0;
+//            String txt = br.readLine();
+//            while (txt != null){
+//                if (lines == index_num){
+//                    disk_line = txt;
+//                    break;
+//                }
+//                txt = br.readLine();
+//                lines ++;
+//            }
+//        }
+//
+//        return disk_line;
+//    }
 
     public long[] Disk_Index (int sublists_num,int[] disk_index) throws IOException{
         long[] Anchor = new long[sublists_num];
@@ -63,6 +64,7 @@ public class Maximum {
             txt = br.readLine();
             lines ++;
         }
+        br.close();
         return Anchor;
     }
 
@@ -86,6 +88,7 @@ public class Maximum {
             disk_line = txt;
             point = br.getFilePointer();
         }
+        br.close();
         disk_point[0] = disk_line;
         disk_point[1] = String.valueOf(point);
         return disk_point;
