@@ -3,7 +3,6 @@ package Project_LA1;
 
 import java.io.*;
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 
 public class Phase1 {
@@ -17,11 +16,12 @@ public class Phase1 {
 
         FileReader fr = new FileReader(Configuration.TEXT1_PATH);
         BufferedReader br = new BufferedReader(fr);
+        FileWriter fw  = new FileWriter(Configuration.OUTPUT_PATH,true);
+        PrintWriter pw = new PrintWriter(fw);
         Phase1 phase = new Phase1();
         Sort sort  = new Sort();
 
         //calculate the size of the file
-        //need to be optimized(if memory is full then deal with the data and clear the buffer, then deal with new data)
         int sum = 0;
         FileReader fr2 = new FileReader(Configuration.TEXT1_PATH);
         BufferedReader br2 = new BufferedReader(fr2);
@@ -29,6 +29,7 @@ public class Phase1 {
             sum++;
         }
         Configuration.sumNum = sum;
+        br2.close();
         fr2.close();
         int times = sum%Configuration.TUPLE_NUM==0?sum/Configuration.TUPLE_NUM:sum/Configuration.TUPLE_NUM+1;
         Configuration.timeNum = times;
@@ -46,7 +47,7 @@ public class Phase1 {
             }
             if(subList.size()==Configuration.TUPLE_NUM||timeFlag!=0){
                 sort.quickSort(subList,0,subList.size()-1);
-                phase.OutputFile(subList);
+                phase.OutputFile(subList,pw);
             }else{
                 FileWriter fwl  = new FileWriter(Configuration.TEXT2_PATH,true);
                 PrintWriter pwl = new PrintWriter(fwl);
@@ -60,6 +61,8 @@ public class Phase1 {
         }
         br.close();
         fr.close();
+        pw.close();
+        fw.close();
     }
 
     /**
@@ -67,15 +70,10 @@ public class Phase1 {
      * @param subList
      * @throws IOException
      */
-    public void OutputFile(List<String> subList) throws IOException {
-        FileWriter fw  = new FileWriter(Configuration.OUTPUT_PATH,true);
-        PrintWriter pw = new PrintWriter(fw);
+    public void OutputFile(List<String> subList,PrintWriter pw) throws IOException {
         //output every element in the sublist
         for(String str:subList){
             pw.println(str);
-            pw.flush();
         }
-        pw.close();
-        fw.close();
     }
 }

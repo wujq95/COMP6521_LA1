@@ -19,12 +19,12 @@ public class DataGenerator {
      * @throws IOException
      */
     public static void main(String[] args) throws IOException {
-        String PATH = "/Users/wujiaqi/IdeaProjects/COMP6521_LA1/generator3.txt";
+        String PATH = "/Users/wujiaqi/IdeaProjects/COMP6521_LA1/generator4.txt";
         FileWriter fwClear  = new FileWriter(PATH);
         fwClear.write("");
         fwClear.close();
         FileWriter fw  = new FileWriter(PATH,true);
-        for(int i=0;i<500000;i++){
+        for(int i=0;i<1003000;i++){
             String str = stringGenerator();
             fw.write(str);
             fw.write("\n");

@@ -11,6 +11,10 @@ public class Main {
      * @throws IOException
      */
     public static void main(String[] args) throws IOException {
+        //问题：
+        //1、block有没有用
+        //2、内存占满之后如何处理其他的东西
+
         Phase1 phase1 = new Phase1();
         Date date1 = new Date();
         //clear the file
