@@ -14,6 +14,7 @@ public class Main {
         //问题：
         //1、block有没有用
         //2、内存占满之后如何处理其他的东西
+        //3、可不可以第一个文档的剩余数据存储下来，然后第二次打开文档直接处理
 
         Phase1 phase1 = new Phase1();
         Date date1 = new Date();
