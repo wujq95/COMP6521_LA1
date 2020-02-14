@@ -19,6 +19,7 @@ public class Main {
         fileWriter.close();
         phase1.start();
         Configuration.TEXT1_PATH = Configuration.TEXT2_PATH;
+        Phase1.timeFlag=1;
         phase1.start();
         Date date2 = new Date();
         System.out.println(date2.getTime()-date1.getTime());

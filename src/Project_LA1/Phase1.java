@@ -3,9 +3,12 @@ package Project_LA1;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 public class Phase1 {
+
+    static int timeFlag = 0;
 
     /**
      * start the phase1 for sorting the data
@@ -37,10 +40,23 @@ public class Phase1 {
             for(int j=0;j<Configuration.TUPLE_NUM;j++){
                 if((line = br.readLine())!=null){
                     subList.add(line);
+                }else{
+                    break;
                 }
             }
-            sort.quickSort(subList,0,subList.size()-1);
-            phase.OutputFile(subList);
+            if(subList.size()==Configuration.TUPLE_NUM||timeFlag!=0){
+                sort.quickSort(subList,0,subList.size()-1);
+                phase.OutputFile(subList);
+            }else{
+                FileWriter fwl  = new FileWriter(Configuration.TEXT2_PATH,true);
+                PrintWriter pwl = new PrintWriter(fwl);
+                for(String str:subList){
+                    pwl.println(str);
+                    pwl.flush();
+                }
+                pwl.close();
+                fwl.close();
+            }
         }
         br.close();
         fr.close();
