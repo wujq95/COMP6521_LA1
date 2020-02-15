@@ -100,4 +100,23 @@ public class Phase1 {
             pw.println(str);
         }
     }
+
+    /**
+     * get line number by the file adress
+     * @param str
+     * @return
+     * @throws IOException
+     */
+    public int getLineNum(String str)  throws IOException {
+        int sum = 0;
+        FileReader fr  = new FileReader(str);
+        BufferedReader br = new BufferedReader(fr);
+        String line = "";
+        while((line=br.readLine())!=null){
+            sum++;
+        }
+        br.close();
+        fr.close();
+        return sum;
+    }
 }
