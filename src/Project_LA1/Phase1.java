@@ -7,7 +7,7 @@ import java.util.List;
 
 public class Phase1 {
 
-    static int timeFlag = 0;
+    public static int timeFlag = 0;
 
     /**
      * start the phase1 for sorting the data
