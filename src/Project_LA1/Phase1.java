@@ -70,7 +70,7 @@ public class Phase1 {
             subList.add(line);
             if(subList.size()==Configuration.TUPLE_NUM){
                 sort.quickSort(subList,0,subList.size()-1);
-                String addStr = "src/Data_Files/phase2_original"+timeFlag+fileNum+".txt";
+                String addStr = Configuration.TEMP_PATH+timeFlag+fileNum+".txt";
                 phase.OutputDiffFiles(subList,addStr);
                 subList = new ArrayList<>();
                 fileNum++;
@@ -87,7 +87,7 @@ public class Phase1 {
                 fwl.close();
             }else{
                 sort.quickSort(subList,0,subList.size()-1);
-                String addStr = "src/Data_Files/phase2_original"+timeFlag+fileNum+".txt";
+                String addStr = Configuration.TEMP_PATH+timeFlag+fileNum+".txt";
                 phase.OutputDiffFiles(subList,addStr);
                 //fileNum++;
             }
