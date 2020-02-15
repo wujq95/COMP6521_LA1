@@ -19,12 +19,21 @@ public class DataGenerator {
      * @throws IOException
      */
     public static void main(String[] args) throws IOException {
-        String PATH = Configuration.TEXT1_PATH;
-        FileWriter fwClear  = new FileWriter(PATH);
+        generate(1000000,Configuration.TEXT1_PATH);
+    }
+
+    /**
+     * generate data
+     * @param num
+     * @param path
+     * @throws IOException
+     */
+    public static void generate(int num,String path) throws IOException {
+        FileWriter fwClear  = new FileWriter(path);
         fwClear.write("");
         fwClear.close();
-        FileWriter fw  = new FileWriter(PATH,true);
-        for(int i=0;i<1000000;i++){
+        FileWriter fw  = new FileWriter(path,true);
+        for(int i=0;i<num;i++){
             String str = stringGenerator();
             fw.write(str);
             fw.write("\n");
