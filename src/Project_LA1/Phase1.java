@@ -8,6 +8,7 @@ import java.util.List;
 public class Phase1 {
 
     public static int timeFlag = 0;
+    public static int fileNum = 1;
 
     /**
      * start the phase1 for sorting the data
@@ -61,7 +62,7 @@ public class Phase1 {
         BufferedReader br = new BufferedReader(fr);
         Phase1 phase = new Phase1();
         Sort sort  = new Sort();
-        int fileNum = 1;
+
 
         //add the data into the sublist
         String line = "";
@@ -70,7 +71,7 @@ public class Phase1 {
             subList.add(line);
             if(subList.size()==Configuration.TUPLE_NUM){
                 sort.quickSort(subList,0,subList.size()-1);
-                String addStr = Configuration.TEMP_PATH+timeFlag+fileNum+".txt";
+                String addStr = Configuration.TEMP_PATH+fileNum+".txt";
                 phase.OutputDiffFiles(subList,addStr);
                 subList = new ArrayList<>();
                 fileNum++;
@@ -87,7 +88,7 @@ public class Phase1 {
                 fwl.close();
             }else{
                 sort.quickSort(subList,0,subList.size()-1);
-                String addStr = Configuration.TEMP_PATH+timeFlag+fileNum+".txt";
+                String addStr = Configuration.TEMP_PATH+fileNum+".txt";
                 phase.OutputDiffFiles(subList,addStr);
                 //fileNum++;
             }
