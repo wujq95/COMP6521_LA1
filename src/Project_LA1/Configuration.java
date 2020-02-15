@@ -21,5 +21,5 @@ public class Configuration {
     public static String OUTPUT_PATH = "src/Data_Files/phase2_original.txt";
     public static String PHASE2_ORIGINAL = "src/Data_Files/phase2_original.txt";
     public static String PHASE2_OUTPUT = "src/Data_Files/phase2_output.txt";
-    
+
 }
