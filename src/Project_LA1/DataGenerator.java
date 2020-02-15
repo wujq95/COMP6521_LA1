@@ -19,7 +19,8 @@ public class DataGenerator {
      * @throws IOException
      */
     public static void main(String[] args) throws IOException {
-        generate(1000000,Configuration.TEXT1_PATH);
+        generate(296000,Configuration.TEXT2_PATH);
+        //p2Generate(10000,Configuration.PHASE2_ORIGINAL);
     }
 
     /**
@@ -29,12 +30,35 @@ public class DataGenerator {
      * @throws IOException
      */
     public static void generate(int num,String path) throws IOException {
-        FileWriter fwClear  = new FileWriter(path);
-        fwClear.write("");
-        fwClear.close();
+        fileClear(path);
         FileWriter fw  = new FileWriter(path,true);
         for(int i=0;i<num;i++){
             String str = stringGenerator();
+            fw.write(str);
+            fw.write("\n");
+        }
+        fw.close();
+    }
+
+    /**
+     * generate phase2 data
+     * @param num
+     * @param path
+     * @throws IOException
+     */
+    public static void p2Generate(int num,String path) throws IOException {
+        fileClear(path);
+        FileWriter fw  = new FileWriter(path,true);
+        String[] ids={"73762817","86526374","73645123","90192238"};
+        String[] dates={"2019-10-11",
+                        "2020-06-05",
+                        "2019-02-13",
+                        "2020-01-29",
+                        "2020-02-17",
+                        "2019-04-11"};
+        Random random = new Random();
+        for(int i=0;i<num;i++){
+            String str = phase2TestDataGenerator(ids[2],dates[random.nextInt(dates.length)]);
             fw.write(str);
             fw.write("\n");
         }
@@ -119,5 +143,66 @@ public class DataGenerator {
             sb.append(" ");
         }
         return sb.toString();
+    }
+
+    /**
+     * phase2 test data generator
+     * @return
+     */
+    public static String phase2TestDataGenerator(String id,String date){
+        StringBuffer sb = new StringBuffer();
+        Random random=new Random();
+        sb.append(id);
+        sb.append(date);
+        String[] firstName  = new String[]{"Ann","Peter","Bob","Nick","Dick","Linda","Maya","Lynn","Sam","Tim","Angle","Laya","Will"};
+        String[] lastName  = new String[]{"Ann","Peter","Bob","Nick","Dick","Linda","Maya","Lynn","Sam","Tim","Angle","Laya","Will"};
+        int firstNameId = random.nextInt(firstName.length);
+        int lastNameId = random.nextInt(lastName.length);
+        sb.append(firstName[firstNameId]);
+        sb.append("   ");
+        sb.append(lastName[lastNameId]);
+        for(int i=0;i<25-firstName[firstNameId].length()-lastName[lastNameId].length()-3;i++){
+            sb.append(" ");
+        }
+        int t=5;
+        while(t>0){
+            sb.append(" ");
+            t--;
+        }
+        String genderStr="01";
+        sb.append(genderStr.charAt(random.nextInt(2)));
+        String dptStr="0123456789";
+        for(int i=0;i<3;i++){
+            sb.append(dptStr.charAt(random.nextInt(10)));
+        }
+        String sinStr="0123456789";
+        for(int i=0;i<9;i++){
+            sb.append(sinStr.charAt(random.nextInt(10)));
+        }
+        sb.append(" ");
+        String[] street = new String[]{"Tochgelly WV 25866 South",
+                "Lilburn GA 30048 South",
+                "New York City NY",
+                "Kinsman IL 60437 Midwest",
+                "Punxsutawney PA 15767",
+                "Mebane NC 27302 South",
+                "Gorman TX 76454 South"};
+        int streetId  =random.nextInt(street.length);
+        String streetName = street[streetId];
+        sb.append(streetName);
+        for(int i=0;i<35-streetName.length();i++){
+            sb.append(" ");
+        }
+        return sb.toString();
+    }
+
+    /**
+     * clear file
+     * @param path
+     */
+    public static void fileClear(String path) throws IOException {
+        FileWriter fwClear  = new FileWriter(path);
+        fwClear.write("");
+        fwClear.close();
     }
 }

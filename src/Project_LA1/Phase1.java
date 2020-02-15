@@ -21,19 +21,6 @@ public class Phase1 {
         Phase1 phase = new Phase1();
         Sort sort  = new Sort();
 
-        //calculate the size of the file
-        /*int sum = 0;
-        FileReader fr2 = new FileReader(Configuration.TEXT1_PATH);
-        BufferedReader br2 = new BufferedReader(fr2);
-        while((br2.readLine())!=null){
-            sum++;
-        }
-        Configuration.sumNum = sum;
-        br2.close();
-        fr2.close();
-        int times = sum%Configuration.TUPLE_NUM==0?sum/Configuration.TUPLE_NUM:sum/Configuration.TUPLE_NUM+1;
-        Configuration.timeNum = times;*/
-
         //add the data into the sublist
         String line = "";
         List<String> subList = new ArrayList<>();
@@ -59,20 +46,38 @@ public class Phase1 {
                 phase.OutputFile(subList,pw);
             }
         }
+        br.close();
+        fr.close();
+        pw.close();
+        fw.close();
+    }
 
-        /*for(int i=0;i<times;i++){
-            List<String> subList = new ArrayList<>();
-            for(int j=0;j<Configuration.TUPLE_NUM;j++){
-                if((line = br.readLine())!=null){
-                    subList.add(line);
-                }else{
-                    break;
-                }
-            }
-            if(subList.size()==Configuration.TUPLE_NUM||timeFlag!=0){
+    /**
+     * start the phase1 for sorting the data（store data in different files）
+     */
+    public void start2() throws IOException {
+
+        FileReader fr = new FileReader(Configuration.TEXT1_PATH);
+        BufferedReader br = new BufferedReader(fr);
+        Phase1 phase = new Phase1();
+        Sort sort  = new Sort();
+        int fileNum = 1;
+
+        //add the data into the sublist
+        String line = "";
+        List<String> subList = new ArrayList<>();
+        while((line = br.readLine())!=null){
+            subList.add(line);
+            if(subList.size()==Configuration.TUPLE_NUM){
                 sort.quickSort(subList,0,subList.size()-1);
-                phase.OutputFile(subList,pw);
-            }else{
+                String addStr = "src/Data_Files/phase2_original"+timeFlag+fileNum+".txt";
+                phase.OutputDiffFiles(subList,addStr);
+                subList = new ArrayList<>();
+                fileNum++;
+            }
+        }
+        if(subList.size()>0){
+            if(timeFlag==0){
                 FileWriter fwl  = new FileWriter(Configuration.TEXT2_PATH,true);
                 PrintWriter pwl = new PrintWriter(fwl);
                 for(String str:subList){
@@ -80,13 +85,15 @@ public class Phase1 {
                 }
                 pwl.close();
                 fwl.close();
+            }else{
+                sort.quickSort(subList,0,subList.size()-1);
+                String addStr = "src/Data_Files/phase2_original"+timeFlag+fileNum+".txt";
+                phase.OutputDiffFiles(subList,addStr);
+                //fileNum++;
             }
-        }*/
-
+        }
         br.close();
         fr.close();
-        pw.close();
-        fw.close();
     }
 
     /**
@@ -99,6 +106,21 @@ public class Phase1 {
         for(String str:subList){
             pw.println(str);
         }
+    }
+
+    /**
+     *output sublists in different files
+     * @param subList
+     * @param address
+     */
+    public void OutputDiffFiles(List<String> subList,String address) throws IOException {
+        FileWriter fw = new FileWriter(address);
+        PrintWriter pw = new PrintWriter(fw);
+        for(String str:subList){
+            pw.println(str);
+        }
+        pw.close();
+        fw.close();
     }
 
     /**

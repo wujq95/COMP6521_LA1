@@ -22,10 +22,10 @@ public class Main {
         FileWriter fileWriter  = new FileWriter(Configuration.OUTPUT_PATH);
         fileWriter.write("");
         fileWriter.close();
-        phase1.start();
+        phase1.start2();
         Configuration.TEXT1_PATH = Configuration.TEXT2_PATH;
         Phase1.timeFlag=1;
-        phase1.start();
+        phase1.start2();
         Date date2 = new Date();
         System.out.println(date2.getTime()-date1.getTime());
     }
