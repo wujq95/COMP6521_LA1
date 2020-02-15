@@ -8,7 +8,7 @@ import java.io.IOException;
 
 public class LineNumTest {
 
-    String input = "/Users/wujiaqi/IdeaProjects/COMP6521_LA1/generator3.txt";
+    String input = "/Users/wujiaqi/IdeaProjects/COMP6521_LA1/generator4.txt";
     String output = "/Users/wujiaqi/IdeaProjects/COMP6521_LA1/output.txt";
     @Test
     public void lineNumTest() throws IOException {
