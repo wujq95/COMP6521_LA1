@@ -38,6 +38,7 @@ public class Main {
         Date date4 = new Date();
         long file_time2;
         file_time2 = date4.getTime()-date3.getTime();
+        System.out.println(file_time2);
 
         //conclusion
         long total_time = file_time1 + file_time2;

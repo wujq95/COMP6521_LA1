@@ -14,7 +14,7 @@ public class Phase2 {
         int memory_sublists_size = param[2];     //内存中每个sublist存放数量
         int sublist_last = sublists_size % memory_sublists_size; //最后一次剩余tuple个数
 //        System.out.println(memory_sublists_size);
-        int[] io_time = po.IO_time( sublists_size, memory_sublists_size, sublists_num);     //需要循环多少次
+//        int[] io_time = po.IO_time( sublists_size, memory_sublists_size, sublists_num);     //需要循环多少次
 //        System.out.println(Arrays.toString(io_time));
 //        int[] disk_index = po.Disk_Index(sublists_num,memory_sublists_size,sublists_size);  //
         String[] file_address = po.File_Address(sublists_num);                             //文件地址初始化
@@ -78,14 +78,15 @@ public class Phase2 {
     }
 
     public int[] Config() throws IOException{
+        Runtime rt = Runtime.getRuntime();
+        long totalMemory = rt.totalMemory();
         int[] param = new int[3];
         File[] content = new File(Configuration.TEMP_CONTENT).listFiles();
-//        System.out.println(content.length);
+//        System.out.println(totalMemory);
 
         param[0] = content.length;               //sublists_num
-        param[1] = Configuration.TUPLE_NUM;     //sublists_size
-        param[2] = Configuration.TUPLE_NUM / (param[0]+1);    //memory_sublists_size
-//        System.out.println(Arrays.toString(param));
+        param[1] = (int) totalMemory;     //sublists_size
+        param[2] = (int) (totalMemory/Configuration.TUPLE_SIZE / (param[0] * 3));    //memory_sublists_size (memory里sublist+ buffereader + buffer_list+计算等等)
         return param;
     }
     public static void main(String[] args) throws IOException {
