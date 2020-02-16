@@ -27,7 +27,7 @@ public class Phase1 {
         List<String> subList = new ArrayList<>();
         while((line = br.readLine())!=null){
             subList.add(line);
-            if(subList.size()==Configuration.TUPLE_NUM){
+            if(subList.size()==Configuration.TUPLE_NUM / 2){
                 sort.quickSort(subList,0,subList.size()-1);
                 phase.OutputFile(subList,pw);
                 subList = new ArrayList<>();
@@ -69,7 +69,7 @@ public class Phase1 {
         List<String> subList = new ArrayList<>();
         while((line = br.readLine())!=null){
             subList.add(line);
-            if(subList.size()==Configuration.TUPLE_NUM){
+            if(subList.size()==Configuration.TUPLE_NUM * 1/2){
                 sort.quickSort(subList,0,subList.size()-1);
                 String addStr = Configuration.TEMP_PATH+fileNum+".txt";
                 phase.OutputDiffFiles(subList,addStr);

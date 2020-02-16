@@ -85,8 +85,8 @@ public class Phase2 {
 //        System.out.println(totalMemory);
 
         param[0] = content.length;               //sublists_num
-        param[1] = (int) totalMemory;     //sublists_size
-        param[2] = (int) (totalMemory/Configuration.TUPLE_SIZE / (param[0] * 3));    //memory_sublists_size (memory里sublist+ buffereader + buffer_list+计算等等)
+        param[1] = (int) totalMemory / 2;     //sublists_size
+        param[2] = (int) (totalMemory/Configuration.TUPLE_SIZE / (param[0] *3));    //memory_sublists_size (memory里sublist+ buffereader + buffer_list+计算等等)
         return param;
     }
     public static void main(String[] args) throws IOException {

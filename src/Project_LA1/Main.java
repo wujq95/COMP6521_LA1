@@ -30,7 +30,7 @@ public class Main {
         Date date2 = new Date();
         long file_time1;
         file_time1 = date2.getTime()-date1.getTime();
-
+        System.out.println("phase1 time:"+file_time1);
         //第二步
         Phase2 s = new Phase2();
         Date date3 = new Date();
@@ -38,7 +38,7 @@ public class Main {
         Date date4 = new Date();
         long file_time2;
         file_time2 = date4.getTime()-date3.getTime();
-        System.out.println(file_time2);
+        System.out.println("phase2 time:"+ file_time2);
 
         //conclusion
         long total_time = file_time1 + file_time2;
