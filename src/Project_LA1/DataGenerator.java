@@ -19,19 +19,27 @@ public class DataGenerator {
      * @throws IOException
      */
     public static void main(String[] args) throws IOException {
-        String PATH = "src/Data_Files/sample2.txt";
-        FileWriter fwClear  = new FileWriter(PATH);
+        generate(1000000,Configuration.TEXT2_PATH);
+    }
+
+    /**
+     * generate sample file
+     * @param num
+     * @param address
+     * @throws IOException
+     */
+    public static void generate(int num,String address) throws IOException {
+        FileWriter fwClear  = new FileWriter(address);
         fwClear.write("");
         fwClear.close();
-        FileWriter fw  = new FileWriter(PATH,true);
-        for(int i=0;i<1000000;i++){
+        FileWriter fw  = new FileWriter(address,true);
+        for(int i=0;i<num;i++){
             String str = stringGenerator();
             fw.write(str);
             fw.write("\n");
         }
         fw.close();
     }
-
     /**
      * data generator
      * @param length

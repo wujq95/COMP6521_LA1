@@ -70,7 +70,4 @@ public class FileTest {
         fr.close();
         return sum;
     }
-
-
-
 }
