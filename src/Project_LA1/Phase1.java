@@ -65,11 +65,14 @@ public class Phase1 {
 
 
         //add the data into the sublist
+        Runtime rt = Runtime.getRuntime();
+        long totalMemory = rt.totalMemory();
+        int sublist_size = (int) totalMemory / Configuration.TUPLE_SIZE / 2;
         String line = "";
         List<String> subList = new ArrayList<>();
         while((line = br.readLine())!=null){
             subList.add(line);
-            if(subList.size()==Configuration.TUPLE_NUM * 1/2){
+            if(subList.size()==sublist_size){
                 sort.quickSort(subList,0,subList.size()-1);
                 String addStr = Configuration.TEMP_PATH+fileNum+".txt";
                 phase.OutputDiffFiles(subList,addStr);
