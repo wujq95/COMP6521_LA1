@@ -1,7 +1,6 @@
 package Project_LA1;
 
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.util.Date;
 
 public class Main {
@@ -17,6 +16,8 @@ public class Main {
         //3、可不可以第一个文档的剩余数据存储下来，然后第二次打开文档直接处理
 
         Phase1 phase1 = new Phase1();
+        Phase2 phase2 = new Phase2();
+
         Date date1 = new Date();
         //clear the file
         FileWriter fileWriter  = new FileWriter(Configuration.OUTPUT_PATH);
@@ -27,6 +28,39 @@ public class Main {
         Phase1.timeFlag=1;
         phase1.start2();
         Date date2 = new Date();
-        System.out.println(date2.getTime()-date1.getTime());
+        long file_time1;
+        file_time1 = date2.getTime()-date1.getTime();
+
+        //第二步
+        Phase2 s = new Phase2();
+        Date date3 = new Date();
+        s.start();
+        Date date4 = new Date();
+        long file_time2;
+        file_time2 = date4.getTime()-date3.getTime();
+
+        //conclusion
+        long total_time = file_time1 + file_time2;
+        int lines = Get_Line();
+        long block_num = Get_Block();
+        System.out.println("total time:"+ total_time);
+        System.out.println("total lines:"+ lines);
+        System.out.println("total blocks:"+ block_num);
+    }
+
+    public static int Get_Line() throws IOException{
+        FileReader fr = new FileReader(Configuration.PHASE2_OUTPUT);
+        BufferedReader br = new BufferedReader(fr);
+        int lines = 0;
+        while (br.readLine() != null){
+            lines += 1;
+        }
+        return lines;
+    }
+    public static long Get_Block() throws IOException{
+        File f= new File(Configuration.PHASE2_OUTPUT);
+        long file_size = f.length();
+        long block_num = file_size / Configuration.BLOCK_SIZE;
+        return block_num;
     }
 }
