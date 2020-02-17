@@ -10,11 +10,6 @@ public class Main {
      * @throws IOException
      */
     public static void main(String[] args) throws IOException {
-        //问题：
-        //1、block有没有用
-        //2、内存占满之后如何处理其他的东西
-        //3、可不可以第一个文档的剩余数据存储下来，然后第二次打开文档直接处理
-
         Phase1 phase1 = new Phase1();
         Phase2 phase2 = new Phase2();
 
@@ -23,16 +18,15 @@ public class Main {
         long totalMemory = rt.totalMemory();
         System.out.println ("total memory:"+ totalMemory/1024/1024+"M");
 
-
         Date date1 = new Date();
         //clear the file
         FileWriter fileWriter  = new FileWriter(Configuration.OUTPUT_PATH);
         fileWriter.write("");
         fileWriter.close();
-        phase1.start2(totalMemory);
+        phase1.start(totalMemory);
         Configuration.TEXT1_PATH = Configuration.TEXT2_PATH;
         Phase1.timeFlag=1;
-        phase1.start2(totalMemory);
+        phase1.start(totalMemory);
         Date date2 = new Date();
         long file_time1;
         file_time1 = date2.getTime()-date1.getTime();

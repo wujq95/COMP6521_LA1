@@ -29,6 +29,4 @@ public class DataGeneratorTest {
         dg.generate(NUM,Configuration.TEXT1_PATH);
         Assert.assertEquals(NUM,phase1.getLineNum(Configuration.TEXT1_PATH));
     }
-
-
 }

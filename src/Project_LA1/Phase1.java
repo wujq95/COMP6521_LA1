@@ -11,23 +11,18 @@ public class Phase1 {
     public static int fileNum = 1;
 
     /**
-     * start the phase1 for sorting the data（store data in different files）
+     * start the phase1 for sorting the data and store the data
      */
-    public void start2(long totalMemory) throws IOException {
+    public void start(long totalMemory) throws IOException {
 
         FileReader fr = new FileReader(Configuration.TEXT1_PATH);
         BufferedReader br = new BufferedReader(fr);
         Phase1 phase = new Phase1();
         Sort sort  = new Sort();
 
-        //内存大小
-        Runtime rt = Runtime.getRuntime();
-        long freeMemory = rt.freeMemory();
-
-
         //add the data into the sublist
         String line = "";
-        int sublist_size = (int) (totalMemory / Configuration.TUPLE_SIZE) / 3;
+        int sublist_size = (int) (totalMemory / Configuration.TUPLE_SIZE) / 4;
         List<String> subList = new ArrayList<>();
         while((line = br.readLine())!=null){
             subList.add(line);
@@ -44,23 +39,6 @@ public class Phase1 {
             String addStr = Configuration.TEMP_PATH+fileNum+".txt";
             phase.OutputDiffFiles(subList,addStr);
             fileNum++;
-            /*sort.quickSort(subList,0,subList.size()-1);
-            String addStr = Configuration.TEMP_PATH+fileNum+".txt";
-            phase.OutputDiffFiles(subList,addStr);
-            fileNum++;*/
-            /*if(timeFlag==0){
-                FileWriter fwl  = new FileWriter(Configuration.TEXT2_PATH,true);
-                PrintWriter pwl = new PrintWriter(fwl);
-                for(String str:subList){
-                    pwl.println(str);
-                }
-                pwl.close();
-                fwl.close();
-            }else{
-                sort.quickSort(subList,0,subList.size()-1);
-                String addStr = Configuration.TEMP_PATH+fileNum+".txt";
-                phase.OutputDiffFiles(subList,addStr);
-            }*/
         }
         br.close();
         fr.close();

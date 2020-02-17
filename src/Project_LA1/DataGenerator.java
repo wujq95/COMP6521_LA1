@@ -19,12 +19,22 @@ public class DataGenerator {
      * @throws IOException
      */
     public static void main(String[] args) throws IOException {
-        String PATH = "src/Data_Files/sample1.txt";
-        FileWriter fwClear  = new FileWriter(PATH);
+        String path = Configuration.TEXT1_PATH;
+        int num = 1000000;
+        generate(num,path);
+    }
+
+    /**
+     * generate data
+     * @param num
+     * @param path
+     */
+    public static void generate(int num, String path) throws IOException {
+        FileWriter fwClear  = new FileWriter(path);
         fwClear.write("");
         fwClear.close();
-        FileWriter fw  = new FileWriter(PATH,true);
-        for(int i=0;i<1000000;i++){
+        FileWriter fw  = new FileWriter(path,true);
+        for(int i=0;i<num;i++){
             String str = stringGenerator();
             fw.write(str);
             fw.write("\n");
@@ -33,21 +43,9 @@ public class DataGenerator {
     }
 
     /**
-     * data generator
-     * @param length
+     * generate random required string
      * @return
      */
-    public static String getRandomString(int length){
-        String str="abcdefghijklmnopqrstuvwxyz";
-        Random random=new Random();
-        StringBuffer sb=new StringBuffer();
-        for(int i=0;i<length;i++){
-            int number=random.nextInt(26);
-            sb.append(str.charAt(number));
-        }
-        return sb.toString();
-    }
-
     public static String stringGenerator(){
         StringBuffer sb = new StringBuffer();
         String str="0123456789";

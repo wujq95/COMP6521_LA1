@@ -3,6 +3,7 @@ package Test;
 import Project_LA1.Configuration;
 import Project_LA1.DataGenerator;
 import Project_LA1.Phase1;
+import Project_LA1.Phase2;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -17,7 +18,6 @@ public class FileTest {
         fileWriter.write("");
         fileWriter.close();
     }
-
 
     /**
      * file write test
@@ -34,23 +34,6 @@ public class FileTest {
         pw.close();
         fw.close();
         Assert.assertEquals(NUM,getLineNum(Configuration.OUTPUT_PATH));
-    }
-
-    /**
-     * check main function process successfully
-     * @throws IOException
-     */
-    @Test
-    public void mainFunctionTest() throws IOException {
-        int input1Num = getLineNum(Configuration.TEXT1_PATH);
-        int input2Num = getLineNum(Configuration.TEXT2_PATH);
-        Phase1 phase1 = new Phase1();
-        phase1.start();
-        Configuration.TEXT1_PATH = Configuration.TEXT2_PATH;
-        Phase1.timeFlag=1;
-        phase1.start();
-        int outputNum = getLineNum(Configuration.OUTPUT_PATH);
-        Assert.assertEquals(outputNum,input1Num+input2Num);
     }
 
     /**
