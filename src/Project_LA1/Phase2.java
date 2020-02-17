@@ -80,13 +80,13 @@ public class Phase2 {
         int sublists_size = po.Sublist_size();
 
         int[] param = new int[3];
-        File[] content = new File(Configuration.TEMP_CONTENT).listFiles();
+        String[] content = new File(Configuration.TEMP_CONTENT).list();
 
         assert content != null;
         param[0] = content.length-1;               //sublists_num
         param[1] = sublists_size;               //sublists_size
         param[2] = (int) (totalMemory/Configuration.TUPLE_SIZE / (param[0]*5));    //memory_sublists_size (memory里sublist+ buffereader + buffer_list+计算等等)
-
+        System.out.println(Arrays.toString(param));
         return param;
     }
     public static void main(String[] args) throws IOException {
