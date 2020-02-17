@@ -11,49 +11,6 @@ public class Phase1 {
     public static int fileNum = 1;
 
     /**
-     * start the phase1 for sorting the data
-     */
-    public void start() throws IOException {
-
-        FileReader fr = new FileReader(Configuration.TEXT1_PATH);
-        BufferedReader br = new BufferedReader(fr);
-        FileWriter fw  = new FileWriter(Configuration.OUTPUT_PATH,true);
-        PrintWriter pw = new PrintWriter(fw);
-        Phase1 phase = new Phase1();
-        Sort sort  = new Sort();
-
-        //add the data into the sublist
-        String line = "";
-        List<String> subList = new ArrayList<>();
-        while((line = br.readLine())!=null){
-            subList.add(line);
-            if(subList.size()==Configuration.TUPLE_NUM / 2){
-                sort.quickSort(subList,0,subList.size()-1);
-                phase.OutputFile(subList,pw);
-                subList = new ArrayList<>();
-            }
-        }
-        if(subList.size()>0){
-            if(timeFlag==0){
-                FileWriter fwl  = new FileWriter(Configuration.TEXT2_PATH,true);
-                PrintWriter pwl = new PrintWriter(fwl);
-                for(String str:subList){
-                    pwl.println(str);
-                }
-                pwl.close();
-                fwl.close();
-            }else{
-                sort.quickSort(subList,0,subList.size()-1);
-                phase.OutputFile(subList,pw);
-            }
-        }
-        br.close();
-        fr.close();
-        pw.close();
-        fw.close();
-    }
-
-    /**
      * start the phase1 for sorting the data（store data in different files）
      */
     public void start2(long totalMemory) throws IOException {
@@ -63,10 +20,14 @@ public class Phase1 {
         Phase1 phase = new Phase1();
         Sort sort  = new Sort();
 
+        //内存大小
+        Runtime rt = Runtime.getRuntime();
+        long freeMemory = rt.freeMemory();
+
 
         //add the data into the sublist
         String line = "";
-        int sublist_size = (int) (totalMemory / Configuration.TUPLE_SIZE) / 3;
+        int sublist_size = (int) (totalMemory / Configuration.TUPLE_SIZE) / 4;
         List<String> subList = new ArrayList<>();
         while((line = br.readLine())!=null){
             subList.add(line);
@@ -79,7 +40,10 @@ public class Phase1 {
             }
         }
         if(subList.size()>0){
-            if(timeFlag==0){
+            sort.quickSort(subList,0,subList.size()-1);
+            String addStr = Configuration.TEMP_PATH+fileNum+".txt";
+            phase.OutputDiffFiles(subList,addStr);
+            /*if(timeFlag==0){
                 FileWriter fwl  = new FileWriter(Configuration.TEXT2_PATH,true);
                 PrintWriter pwl = new PrintWriter(fwl);
                 for(String str:subList){
@@ -91,23 +55,10 @@ public class Phase1 {
                 sort.quickSort(subList,0,subList.size()-1);
                 String addStr = Configuration.TEMP_PATH+fileNum+".txt";
                 phase.OutputDiffFiles(subList,addStr);
-                //fileNum++;
-            }
+            }*/
         }
         br.close();
         fr.close();
-    }
-
-    /**
-     * output the sorted data
-     * @param subList
-     * @throws IOException
-     */
-    public void OutputFile(List<String> subList,PrintWriter pw) throws IOException {
-        //output every element in the sublist
-        for(String str:subList){
-            pw.println(str);
-        }
     }
 
     /**
@@ -126,7 +77,7 @@ public class Phase1 {
     }
 
     /**
-     * get line number by the file adress
+     * get line number by the file address
      * @param str
      * @return
      * @throws IOException
@@ -135,8 +86,7 @@ public class Phase1 {
         int sum = 0;
         FileReader fr  = new FileReader(str);
         BufferedReader br = new BufferedReader(fr);
-        String line = "";
-        while((line=br.readLine())!=null){
+        while((br.readLine())!=null){
             sum++;
         }
         br.close();
