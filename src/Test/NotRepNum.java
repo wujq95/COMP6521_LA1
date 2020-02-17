@@ -11,6 +11,7 @@ public class NotRepNum {
         HashSet<String> set = new HashSet<>();
         String path1 = "src/Data_Files/sample1.txt";
         String path2 = "src/Data_Files/sample2.txt";
+        String path3 = "src/Data_Files/phase2_output.txt";
 
         FileReader fr1 = new FileReader(path1);
         BufferedReader br1  = new BufferedReader(fr1);
@@ -28,5 +29,18 @@ public class NotRepNum {
         br2.close();
         fr2.close();
         System.out.println(set.size());
+
+        HashSet<String> set3 = new HashSet<>();
+        FileReader fr3 = new FileReader(path3);
+        BufferedReader br3  = new BufferedReader(fr3);
+        String line3 = "";
+        while((line3= br3.readLine())!=null){
+            set3.add(line3.substring(0,8));
+        }
+        br1.close();
+        fr1.close();
+
+        System.out.println(set3.size());
+        assert set.size() == set3.size();
     }
 }

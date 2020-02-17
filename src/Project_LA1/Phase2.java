@@ -83,8 +83,8 @@ public class Phase2 {
         String[] content = new File(Configuration.TEMP_CONTENT).list();
 
         assert content != null;
-        param[0] = content.length -1;               //sublists_num
-        param[1] = sublists_size;               //sublists_size
+        param[0] = content.length;               //sublists_num
+        param[1] = Phase1.fileNum;              //sublists_size
         param[2] = (int) (totalMemory/Configuration.TUPLE_SIZE / (param[0]*5));    //memory_sublists_size (memory里sublist+ buffereader + buffer_list+计算等等)
 //        System.out.println(Arrays.toString(param));
         return param;
