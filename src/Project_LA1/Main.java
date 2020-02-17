@@ -50,8 +50,9 @@ public class Main {
         int lines = Get_Line();
         long block_num = Get_Block();
 
-        System.out.println ("total time:"+ totalMemory/1024/1024);
+        
         System.out.println("total time:"+ total_time);
+        System.out.println ("total memory:"+ totalMemory/1024/1024+"M");
         System.out.println("total lines:"+ lines);
         System.out.println("total blocks:"+ block_num);
     }
