@@ -4,24 +4,21 @@ import java.io.*;
 import java.util.*;
 
 public class Phase2 {
-    public void start() throws IOException{
+    public void start(long totalMemory) throws IOException{
         Phase2 phase2 = new Phase2();
         Phase2_Operation po = new Phase2_Operation();
-        int[] param = phase2.Config();
+        po.File_Init(); //初始化文件
+        int[] param = phase2.Config(totalMemory);
 
         int sublists_num = param[0];            //sublist数量
         int sublists_size = param[1];           //sublist大小
         int memory_sublists_size = param[2];     //内存中每个sublist存放数量
-        int sublist_last = sublists_size % memory_sublists_size; //最后一次剩余tuple个数
-//        System.out.println(memory_sublists_size);
+
 //        int[] io_time = po.IO_time( sublists_size, memory_sublists_size, sublists_num);     //需要循环多少次
-//        System.out.println(Arrays.toString(io_time));
-//        int[] disk_index = po.Disk_Index(sublists_num,memory_sublists_size,sublists_size);  //
         String[] file_address = po.File_Address(sublists_num);                             //文件地址初始化
         BufferedReader[] br_init = po.Buffer_Init(sublists_num,file_address);             //指针初始化
 
         phase2.Duplict_Insert(sublists_num,sublists_size,memory_sublists_size,file_address,br_init);
-
 
     }
 
@@ -77,22 +74,27 @@ public class Phase2 {
 
     }
 
-    public int[] Config() throws IOException{
-        Runtime rt = Runtime.getRuntime();
-        long totalMemory = rt.totalMemory();
+    public int[] Config(long totalMemory) throws IOException{
+
+        Phase2_Operation po = new Phase2_Operation();
+        int sublists_size = po.Sublist_size();
+
         int[] param = new int[3];
         File[] content = new File(Configuration.TEMP_CONTENT).listFiles();
-//        System.out.println(totalMemory);
 
+        assert content != null;
         param[0] = content.length;               //sublists_num
-        param[1] = (int) totalMemory / Configuration.TUPLE_SIZE / 2;     //sublists_size
-        param[2] = (int) (totalMemory/Configuration.TUPLE_SIZE / (param[0] *3));    //memory_sublists_size (memory里sublist+ buffereader + buffer_list+计算等等)
+        param[1] = sublists_size;               //sublists_size
+        param[2] = (int) (totalMemory/Configuration.TUPLE_SIZE / (param[0]*5));    //memory_sublists_size (memory里sublist+ buffereader + buffer_list+计算等等)
+//        System.out.println (Arrays.toString(param));
         return param;
     }
     public static void main(String[] args) throws IOException {
         Phase2 s = new Phase2();
         Date date1 = new Date();
-        s.start();
+        Runtime rt = Runtime.getRuntime();
+        long totalMemory = rt.totalMemory();
+        s.start(totalMemory);
         Date date2 = new Date();
         System.out.println(date2.getTime()-date1.getTime());
     }

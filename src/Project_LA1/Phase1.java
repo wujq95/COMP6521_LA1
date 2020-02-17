@@ -56,7 +56,7 @@ public class Phase1 {
     /**
      * start the phase1 for sorting the data（store data in different files）
      */
-    public void start2() throws IOException {
+    public void start2(long totalMemory) throws IOException {
 
         FileReader fr = new FileReader(Configuration.TEXT1_PATH);
         BufferedReader br = new BufferedReader(fr);
@@ -65,10 +65,8 @@ public class Phase1 {
 
 
         //add the data into the sublist
-        Runtime rt = Runtime.getRuntime();
-        long totalMemory = rt.totalMemory();
-        int sublist_size = (int) totalMemory / Configuration.TUPLE_SIZE / 2;
         String line = "";
+        int sublist_size = (int) (totalMemory / Configuration.TUPLE_SIZE) / 3;
         List<String> subList = new ArrayList<>();
         while((line = br.readLine())!=null){
             subList.add(line);

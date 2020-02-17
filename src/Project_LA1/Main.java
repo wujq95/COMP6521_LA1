@@ -18,15 +18,20 @@ public class Main {
         Phase1 phase1 = new Phase1();
         Phase2 phase2 = new Phase2();
 
+        //内存大小
+        Runtime rt = Runtime.getRuntime();
+        long totalMemory = rt.totalMemory();
+
+
         Date date1 = new Date();
         //clear the file
         FileWriter fileWriter  = new FileWriter(Configuration.OUTPUT_PATH);
         fileWriter.write("");
         fileWriter.close();
-        phase1.start2();
+        phase1.start2(totalMemory);
         Configuration.TEXT1_PATH = Configuration.TEXT2_PATH;
         Phase1.timeFlag=1;
-        phase1.start2();
+        phase1.start2(totalMemory);
         Date date2 = new Date();
         long file_time1;
         file_time1 = date2.getTime()-date1.getTime();
@@ -34,7 +39,7 @@ public class Main {
         //第二步
         Phase2 s = new Phase2();
         Date date3 = new Date();
-        s.start();
+        s.start(totalMemory);
         Date date4 = new Date();
         long file_time2;
         file_time2 = date4.getTime()-date3.getTime();

@@ -127,6 +127,21 @@ public class Phase2_Operation {
         fw.close();
     }
 
+    public void File_Init() throws IOException {
+        FileWriter fw  = new FileWriter(Configuration.PHASE2_OUTPUT);
+        PrintWriter pw = new PrintWriter(fw);
+    }
+
+    public int Sublist_size() throws IOException {
+        String file_address = Configuration.TEMP_PATH+"1.txt";
+        FileReader fr = new FileReader(file_address);
+        BufferedReader br = new BufferedReader(fr);
+        int lines = 0;
+        while (br.readLine() != null){
+            lines += 1;
+        }
+        return lines;
+    }
 
 
 
