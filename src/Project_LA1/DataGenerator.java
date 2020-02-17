@@ -19,7 +19,7 @@ public class DataGenerator {
      * @throws IOException
      */
     public static void main(String[] args) throws IOException {
-        String PATH = "src/Data_Files/sample2.txt";
+        String PATH = "src/Data_Files/sample1.txt";
         FileWriter fwClear  = new FileWriter(PATH);
         fwClear.write("");
         fwClear.close();
