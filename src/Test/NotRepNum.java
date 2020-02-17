@@ -16,14 +16,14 @@ public class NotRepNum {
         BufferedReader br1  = new BufferedReader(fr1);
         String line = "";
         while((line= br1.readLine())!=null){
-            set.add(line);
+            set.add(line.substring(0,8));
         }
         br1.close();
         fr1.close();
         FileReader fr2 = new FileReader(path2);
         BufferedReader br2  = new BufferedReader(fr2);
         while((line= br2.readLine())!=null){
-            set.add(line);
+            set.add(line.substring(0,8));
         }
         br2.close();
         fr2.close();
