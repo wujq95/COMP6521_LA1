@@ -27,7 +27,7 @@ public class Phase1 {
 
         //add the data into the sublist
         String line = "";
-        int sublist_size = (int) (totalMemory / Configuration.TUPLE_SIZE) / 4;
+        int sublist_size = (int) (totalMemory / Configuration.TUPLE_SIZE) / 3;
         List<String> subList = new ArrayList<>();
         while((line = br.readLine())!=null){
             subList.add(line);

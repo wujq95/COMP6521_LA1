@@ -89,24 +89,31 @@ public class Phase2_Operation {
 
     public List <String> Buffer_Process(List <String> buffer_list,String max_line,int memory_sublists_size) throws IOException{
         Phase2_Operation po = new Phase2_Operation();
-        int buffer_size = buffer_list.size();
-        if (buffer_size==0){
+        int buffer_size1 = buffer_list.size();
+        int buffer_size2 = buffer_list.size();
+
+        if (buffer_size1==0){
             buffer_list.add(max_line);
         }
-        else if (buffer_size < memory_sublists_size){
-            String curr_line = buffer_list.get(buffer_size-1);
+        else if (buffer_size1 <= memory_sublists_size){
+            String curr_line = buffer_list.get(buffer_size1-1);
             if (max_line.substring(0,8).equals(curr_line.substring(0,8))){
                 if (max_line.substring(8,18).compareTo(curr_line.substring(8,18)) > 0 ){
-                    buffer_list.set(buffer_size-1,max_line);
+                    buffer_list.set(buffer_size1-1,max_line);
                 }
             }
             else {
                 buffer_list.add(max_line);
             }
         }
-        if (buffer_size+1 == memory_sublists_size){
+        buffer_size2 = buffer_list.size();
+        if (buffer_size2 == memory_sublists_size + 1){
+            String last_line = buffer_list.get(buffer_size2-1);
+            buffer_list.remove(buffer_size2-1);
             po.OutputFile(buffer_list);
+
             buffer_list = new ArrayList<String>();
+            buffer_list.add(last_line);
         }
         return buffer_list;
     }

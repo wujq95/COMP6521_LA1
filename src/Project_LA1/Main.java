@@ -21,6 +21,7 @@ public class Main {
         //内存大小
         Runtime rt = Runtime.getRuntime();
         long totalMemory = rt.totalMemory();
+        System.out.println ("total memory:"+ totalMemory/1024/1024+"M");
 
 
         Date date1 = new Date();
@@ -49,11 +50,10 @@ public class Main {
         long total_time = file_time1 + file_time2;
         int lines = Get_Line();
         long block_num = Get_Block();
-//        Delete_Temp();
+        Delete_Temp();
 
 
         System.out.println("total time:"+ total_time);
-        System.out.println ("total memory:"+ totalMemory/1024/1024+"M");
         System.out.println("total lines:"+ lines);
         System.out.println("total blocks:"+ block_num);
     }
