@@ -44,6 +44,10 @@ public class Phase1 {
             String addStr = Configuration.TEMP_PATH+fileNum+".txt";
             phase.OutputDiffFiles(subList,addStr);
             fileNum++;
+            /*sort.quickSort(subList,0,subList.size()-1);
+            String addStr = Configuration.TEMP_PATH+fileNum+".txt";
+            phase.OutputDiffFiles(subList,addStr);
+            fileNum++;*/
             /*if(timeFlag==0){
                 FileWriter fwl  = new FileWriter(Configuration.TEXT2_PATH,true);
                 PrintWriter pwl = new PrintWriter(fwl);
