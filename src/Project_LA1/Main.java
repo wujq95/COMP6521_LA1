@@ -49,8 +49,9 @@ public class Main {
         long total_time = file_time1 + file_time2;
         int lines = Get_Line();
         long block_num = Get_Block();
+//        Delete_Temp();
 
-        
+
         System.out.println("total time:"+ total_time);
         System.out.println ("total memory:"+ totalMemory/1024/1024+"M");
         System.out.println("total lines:"+ lines);
@@ -72,4 +73,13 @@ public class Main {
         long block_num = file_size / Configuration.BLOCK_SIZE;
         return block_num;
     }
+
+    public static void Delete_Temp() throws  IOException{
+        File file = new File(Configuration.TEMP_CONTENT);
+        File[] content = file.listFiles();
+        for (File temp : content){
+            temp.delete();
+        }
+    }
+
 }
