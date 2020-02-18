@@ -13,25 +13,42 @@ public class Phase2 {
     public void start(long totalMemory) throws IOException{
         Phase2 phase2 = new Phase2();
         Phase2_Operation po = new Phase2_Operation();
-        po.File_Init();                         //init file
+        //init file
+        po.File_Init();
         int[] param = phase2.Config(totalMemory);
 
-        int sublists_num = param[0];            //sublist number
-        int sublists_size = param[1];           //sublist size
-        int memory_sublists_size = param[2];     // one block size
+        //sublist number
+        int sublists_num = param[0];
+        //sublist size
+        int sublists_size = param[1];
+        // one block size
+        int memory_sublists_size = param[2];
 
-        String[] file_address = po.File_Address(sublists_num);                             //init file address
-        BufferedReader[] br_init = po.Buffer_Init(sublists_num,file_address);             //init pointer
+        //init file address
+        String[] file_address = po.File_Address(sublists_num);
+        //init pointer
+        BufferedReader[] br_init = po.Buffer_Init(sublists_num,file_address);
 
         phase2.Duplict_Insert(sublists_num,sublists_size,memory_sublists_size,file_address,br_init);
 
     }
 
 
+    /**
+     *
+     * @param sublists_num
+     * @param sublists_size
+     * @param memory_sublists_size
+     * @param file_address
+     * @param br_pointer
+     * @throws IOException
+     */
     public void Duplict_Insert( int sublists_num,int sublists_size, int memory_sublists_size, String[] file_address, BufferedReader[] br_pointer) throws IOException{
         Phase2_Operation po = new Phase2_Operation();
-        List <List<String>> memory_sublists_list = po.init(sublists_num);   //init n blocks in memory
-        List <String> buffer_list = new ArrayList<>();                      //buffer list in memory
+        //init n blocks in memory
+        List <List<String>> memory_sublists_list = po.init(sublists_num);
+        //buffer list in memory
+        List <String> buffer_list = new ArrayList<>();
         List <String> first_line = new ArrayList<>();
 
         while (true){
@@ -43,7 +60,6 @@ public class Phase2 {
                     memory_sublists_list.set(index,result.getKey());
                     br_pointer = result.getValue();
                 }
-//                System.out.println(br_pointer[index].readLine());
             }
 
             // create the first line to compare
@@ -58,7 +74,6 @@ public class Phase2 {
             if (max_index == -1){
                 break;
             }
-//            System.out.println(max_index);
 
             //get the line of biggest value
             String max_line;
@@ -70,15 +85,18 @@ public class Phase2 {
             //remove the biggest line in block of memory
             memory_sublists_list.get(max_index).remove(0);
         }
-
         //process the last sublist
         if (buffer_list != null){
             po.OutputFile(buffer_list);
         }
-
-
     }
 
+    /**
+     *
+     * @param totalMemory
+     * @return
+     * @throws IOException
+     */
     public int[] Config(long totalMemory) throws IOException{
 
         Phase2_Operation po = new Phase2_Operation();
@@ -88,19 +106,12 @@ public class Phase2 {
         String[] content = new File(Configuration.TEMP_CONTENT).list();
 
         assert content != null;
-        param[0] = Phase1.fileNum - 1;               //sublists_num
-        param[1] = sublists_size;                   //sublists_size
-        param[2] = (int) (totalMemory/Configuration.TUPLE_SIZE / (param[0]*5));    //memory_sublists_size (memory里sublist+ buffereader + buffer_list+计算等等)
-//        System.out.println(Arrays.toString(param));
+        //sublists_num
+        param[0] = Phase1.fileNum - 1;
+        //sublists_size
+        param[1] = sublists_size;
+        //memory_sublists_size(sublist, buffereader, buffer_list and others in memeory)
+        param[2] = (int) (totalMemory/Configuration.TUPLE_SIZE / (param[0]*5));
         return param;
-    }
-    public static void main(String[] args) throws IOException {
-        Phase2 s = new Phase2();
-        Date date1 = new Date();
-        Runtime rt = Runtime.getRuntime();
-        long totalMemory = rt.totalMemory();
-        s.start(totalMemory);
-        Date date2 = new Date();
-        System.out.println(date2.getTime()-date1.getTime());
     }
 }

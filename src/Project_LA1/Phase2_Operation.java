@@ -7,15 +7,12 @@ import java.util.List;
 import java.util.Map;
 
 public class Phase2_Operation {
-
-    public int[] IO_time (int sublists_size,int memory_sublists_size,int sublists_num) throws IOException{
-        int[] io_time = new int[sublists_num];
-        for (int i=0;i<sublists_num;i++){
-            io_time[i] = sublists_size / memory_sublists_size +1;
-        }
-        return  io_time;
-    }
-
+    /**
+     * get file address
+     * @param sublists_num
+     * @return
+     * @throws IOException
+     */
     public  String[] File_Address(int sublists_num) throws IOException{
         String[] file_address = new String[sublists_num];
         for (int i=1;i<=sublists_num;i++){
@@ -24,6 +21,13 @@ public class Phase2_Operation {
         return  file_address;
     }
 
+    /**
+     *
+     * @param sublists_num
+     * @param file_address
+     * @return
+     * @throws IOException
+     */
     public BufferedReader[] Buffer_Init(int sublists_num,String[] file_address) throws IOException{
         BufferedReader[] br_init = new BufferedReader[sublists_num];
         for (int i=0;i<sublists_num;i++){
@@ -34,6 +38,12 @@ public class Phase2_Operation {
         return br_init;
     }
 
+    /**
+     *
+     * @param sublits_num
+     * @return
+     * @throws IOException
+     */
     public List <List<String>> init(int sublits_num) throws IOException{
         List <List<String>> memory_sublists_list = new ArrayList<>();
         List<String> init_arr = new ArrayList<>();
@@ -43,6 +53,15 @@ public class Phase2_Operation {
         return memory_sublists_list;
     }
 
+    /**
+     *
+     * @param file_address
+     * @param index
+     * @param br_pointer
+     * @param fetch_num
+     * @return
+     * @throws IOException
+     */
     public Map<List<String>,BufferedReader[]> Fetch_Sublist(String[] file_address, int index, BufferedReader[] br_pointer, int fetch_num) throws IOException {
         Map<List<String>,BufferedReader[]> map= new HashMap<>();
         List<String> fetch_sublist = new ArrayList<>();
@@ -66,6 +85,13 @@ public class Phase2_Operation {
         return  map;
     }
 
+    /**
+     *
+     * @param first_line
+     * @param sublists_num
+     * @return
+     * @throws IOException
+     */
     public int Max_Index (List<String> first_line,int sublists_num) throws IOException {
         int max_index = 0;
         int[] myList = new int[sublists_num];
@@ -80,13 +106,20 @@ public class Phase2_Operation {
 
             }
         }
-//        System.out.println(num);
         if (num == 99999999){
             return -1;
         }
         return max_index;
     }
 
+    /**
+     *
+     * @param buffer_list
+     * @param max_line
+     * @param memory_sublists_size
+     * @return
+     * @throws IOException
+     */
     public List <String> Buffer_Process(List <String> buffer_list,String max_line,int memory_sublists_size) throws IOException{
         Phase2_Operation po = new Phase2_Operation();
         int buffer_size1 = buffer_list.size();
@@ -118,27 +151,36 @@ public class Phase2_Operation {
         return buffer_list;
     }
 
-
-
-
-
+    /**
+     *
+     * @param subList
+     * @throws IOException
+     */
     public void OutputFile(List<String> subList) throws IOException {
         FileWriter fw  = new FileWriter(Configuration.PHASE2_OUTPUT,true);
         PrintWriter pw = new PrintWriter(fw);
         //output every element in the sublist
         for(String str:subList){
             pw.println(str);
-//            pw.flush();
         }
         pw.close();
         fw.close();
     }
 
+    /**
+     *
+     * @throws IOException
+     */
     public void File_Init() throws IOException {
         FileWriter fw  = new FileWriter(Configuration.PHASE2_OUTPUT);
         PrintWriter pw = new PrintWriter(fw);
     }
 
+    /**
+     *
+     * @return
+     * @throws IOException
+     */
     public int Sublist_size() throws IOException {
         String file_address = Configuration.TEMP_PATH+"1.txt";
         FileReader fr = new FileReader(file_address);
@@ -149,10 +191,6 @@ public class Phase2_Operation {
         }
         return lines;
     }
-
-
-
-
 }
 
 

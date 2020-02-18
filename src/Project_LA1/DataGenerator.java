@@ -19,8 +19,8 @@ public class DataGenerator {
      * @throws IOException
      */
     public static void main(String[] args) throws IOException {
-        String path = Configuration.TEXT1_PATH;
-        int num = 1000000;
+        String path = Configuration.TEXT2_PATH;
+        int num = 1238767;
         generate(num,path);
     }
 
