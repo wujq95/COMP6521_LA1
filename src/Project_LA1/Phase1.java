@@ -40,7 +40,7 @@ public class Phase1 {
             sort.quickSort(subList,0,subList.size()-1);
             String addStr = Configuration.TEMP_PATH+fileNum+".txt";
             phase.OutputDiffFiles(subList,addStr);
-            int num = sublist_size%40==0?sublist_size/40:sublist_size/40+1;
+            int num = subList.size()%40==0?subList.size()/40:subList.size()/40+1;
             blockNum+=num;
             fileNum++;
         }
