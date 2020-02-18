@@ -11,7 +11,7 @@ public class Phase1 {
     public static int fileNum = 1;
 
     /**
-     * start the phase1 for sorting the data and store the data
+     * start the phase1 for sorting the data and storing the data
      */
     public void start(long totalMemory) throws IOException {
 
