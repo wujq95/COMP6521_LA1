@@ -12,7 +12,9 @@ public class Phase1 {
     public static int blockNum = 0;
 
     /**
-     * start the phase1 for sorting the data and storing the data
+     * phase1 start method
+     * @param totalMemory
+     * @throws IOException
      */
     public void start(long totalMemory) throws IOException {
 
