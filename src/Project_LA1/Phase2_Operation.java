@@ -68,13 +68,13 @@ public class Phase2_Operation {
 
     public int Max_Index (List<String> first_line,int sublists_num) throws IOException {
         int max_index = 0;
-        int[] myList = new int[sublists_num];       //定义一维数组
+        int[] myList = new int[sublists_num];
         for (int i=0; i<sublists_num;i++){
             myList[i] = Integer.parseInt(first_line.get(i).substring(0,8));
         }
-        int num = myList[0];                        //0为第一个数组下标
-        for (int i = 1; i < myList.length; i++) {   //开始循环一维数组
-            if (myList[i] < num) {                  //循环判断数组元素
+        int num = myList[0];
+        for (int i = 1; i < myList.length; i++) {
+            if (myList[i] < num) {
                 num = myList[i];
                 max_index = i;
 
@@ -90,7 +90,7 @@ public class Phase2_Operation {
     public List <String> Buffer_Process(List <String> buffer_list,String max_line,int memory_sublists_size) throws IOException{
         Phase2_Operation po = new Phase2_Operation();
         int buffer_size1 = buffer_list.size();
-        int buffer_size2 = buffer_list.size();
+        int buffer_size2;
 
         if (buffer_size1==0){
             buffer_list.add(max_line);
