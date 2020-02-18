@@ -42,13 +42,12 @@ public class Main {
         long total_time = file_time1 + file_time2;
         int lines = Get_Line();
         int block_num = Phase1.blockNum;
-        int io_time = block_num*3;
         Delete_Temp();
 
         System.out.println("total time:"+ total_time);
         System.out.println("total lines:"+ lines);
         System.out.println("total blocks:"+ block_num);
-        System.out.println("io times:"+ io_time);
+        System.out.println("io times:"+ block_num*4);
     }
 
     /**
@@ -67,18 +66,6 @@ public class Main {
     }
 
     /**
-     * get block num
-     * @return
-     * @throws IOException
-     */
-    public static long Get_Block() throws IOException{
-        File f= new File(Configuration.PHASE2_OUTPUT);
-        long file_size = f.length();
-        long block_num = file_size / Configuration.BLOCK_SIZE;
-        return block_num;
-    }
-
-    /**
      * delete useless files
      * @throws IOException
      */
@@ -89,5 +76,4 @@ public class Main {
             temp.delete();
         }
     }
-
 }
