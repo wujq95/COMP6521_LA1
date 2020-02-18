@@ -41,8 +41,8 @@ public class Main {
         //conclusion
         long total_time = file_time1 + file_time2;
         int lines = Get_Line();
-        int block_num = Phase2.BLOCK_NUM;
-        int io_time = Phase2.IO_TIME;
+        int block_num = Phase1.blockNum;
+        int io_time = block_num*3;
         Delete_Temp();
 
         System.out.println("total time:"+ total_time);

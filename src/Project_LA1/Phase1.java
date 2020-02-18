@@ -9,6 +9,7 @@ public class Phase1 {
 
     public static int timeFlag = 0;
     public static int fileNum = 1;
+    public static int blockNum = 0;
 
     /**
      * start the phase1 for sorting the data and storing the data
@@ -22,7 +23,7 @@ public class Phase1 {
 
         //add the data into the sublist
         String line = "";
-        int sublist_size = (int) (totalMemory / Configuration.TUPLE_SIZE) / 4;
+        int sublist_size = (int) (totalMemory / Configuration.TUPLE_SIZE/4/40)*40 ;
         List<String> subList = new ArrayList<>();
         while((line = br.readLine())!=null){
             subList.add(line);
@@ -31,6 +32,7 @@ public class Phase1 {
                 String addStr = Configuration.TEMP_PATH+fileNum+".txt";
                 phase.OutputDiffFiles(subList,addStr);
                 subList = new ArrayList<>();
+                blockNum+=sublist_size/40;
                 fileNum++;
             }
         }
@@ -38,6 +40,8 @@ public class Phase1 {
             sort.quickSort(subList,0,subList.size()-1);
             String addStr = Configuration.TEMP_PATH+fileNum+".txt";
             phase.OutputDiffFiles(subList,addStr);
+            int num = sublist_size%40==0?sublist_size/40:sublist_size/40+1;
+            blockNum+=num;
             fileNum++;
         }
         br.close();

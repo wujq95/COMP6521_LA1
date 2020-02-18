@@ -4,9 +4,12 @@ import java.io.*;
 import java.util.*;
 
 public class Phase2 {
-    public static int BLOCK_NUM = 0;
-    public static int IO_TIME = 0;
 
+    /**
+     * phase2 start method
+     * @param totalMemory
+     * @throws IOException
+     */
     public void start(long totalMemory) throws IOException{
         Phase2 phase2 = new Phase2();
         Phase2_Operation po = new Phase2_Operation();
@@ -16,9 +19,6 @@ public class Phase2 {
         int sublists_num = param[0];            //sublist number
         int sublists_size = param[1];           //sublist size
         int memory_sublists_size = param[2];     // one block size
-
-        BLOCK_NUM = sublists_size / memory_sublists_size * sublists_num;    //block number
-        IO_TIME = BLOCK_NUM * 3;                                            // io time
 
         String[] file_address = po.File_Address(sublists_num);                             //init file address
         BufferedReader[] br_init = po.Buffer_Init(sublists_num,file_address);             //init pointer
