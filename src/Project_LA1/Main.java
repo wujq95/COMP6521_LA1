@@ -20,9 +20,6 @@ public class Main {
 
         //step1
         Date date1 = new Date();
-        FileWriter fileWriter  = new FileWriter(Configuration.OUTPUT_PATH);
-        fileWriter.write("");
-        fileWriter.close();
         phase1.start(totalMemory);
         Configuration.TEXT1_PATH = Configuration.TEXT2_PATH;
         Phase1.timeFlag=1;

@@ -7,7 +7,8 @@ import org.junit.runners.Suite;
 
 @Suite.SuiteClasses({
         FileWriteTest.class,
-        DataGeneratorTest.class
+        DataGeneratorTest.class,
+        NotRepNumTest.class
 })
 
 public class JunitTestSuite {
