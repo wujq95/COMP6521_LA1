@@ -1,12 +1,15 @@
-package Test;
+package Util;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 
 public class CompareFile {
-
-
+    /**
+     * check two files have different lines
+     * @param args
+     * @throws IOException
+     */
     public static void main(String[] args) throws IOException {
         FileReader fr = new FileReader("src/Data_Files/phase2_output.txt");
         FileReader fr2 = new FileReader("src/Data_Files/phase2_output2.txt");

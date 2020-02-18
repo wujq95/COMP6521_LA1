@@ -10,7 +10,7 @@ import org.junit.Test;
 
 import java.io.*;
 
-public class FileTest {
+public class FileWriteTest {
 
     @Before
     public void before() throws IOException {

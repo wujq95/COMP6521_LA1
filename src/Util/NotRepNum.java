@@ -1,4 +1,4 @@
-package Test;
+package Util;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -7,6 +7,11 @@ import java.util.HashSet;
 
 public class NotRepNum {
 
+    /**
+     * get the number of not repeated lines
+     * @param args
+     * @throws IOException
+     */
     public static void main(String[] args) throws IOException {
         HashSet<String> set = new HashSet<>();
         String path1 = "src/Data_Files/sample1.txt";
