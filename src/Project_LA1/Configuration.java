@@ -4,7 +4,6 @@ public class Configuration {
 
     //configure the size of tuple and block
     public final static int TUPLE_SIZE = 100;
-    public final static int BLOCK_SIZE = 4000;
 
     //configure the input and output file path
     public static String TEXT1_PATH = "src/Data_Files/sample1.txt";

@@ -1,8 +1,9 @@
-package Project_LA1;
+package Util;
+
+import Project_LA1.Configuration;
 
 import java.io.FileWriter;
 import java.io.IOException;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -19,8 +20,8 @@ public class DataGenerator {
      * @throws IOException
      */
     public static void main(String[] args) throws IOException {
-        String path = Configuration.TEXT2_PATH;
-        int num = 1238767;
+        String path = Configuration.TEXT1_PATH;
+        int num = 569287;
         generate(num,path);
     }
 

@@ -1,7 +1,7 @@
 package Test;
 
 import Project_LA1.Configuration;
-import Project_LA1.DataGenerator;
+import Util.DataGenerator;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;

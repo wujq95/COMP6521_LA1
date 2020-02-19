@@ -12,104 +12,104 @@ public class Phase2 {
      */
     public void start(long totalMemory) throws IOException{
         Phase2 phase2 = new Phase2();
-        Phase2_Operation po = new Phase2_Operation();
+        Phase2Operation po = new Phase2Operation();
         //init file
-        po.File_Init();
-        int[] param = phase2.Config(totalMemory);
+        po.fileInit();
+        int[] param = phase2.config(totalMemory);
 
         //sublist number
-        int sublists_num = param[0];
+        int subListsNum = param[0];
         //sublist size
-        int sublists_size = param[1];
+        int subListsSize = param[1];
         // one block size
-        int memory_sublists_size = param[2];
+        int memorySubListsSize = param[2];
 
         //init file address
-        String[] file_address = po.File_Address(sublists_num);
+        String[] fileAddress = po.fileAddress(subListsNum);
         //init pointer
-        BufferedReader[] br_init = po.Buffer_Init(sublists_num,file_address);
+        BufferedReader[] brInit = po.bufferInit(subListsNum,fileAddress);
 
-        phase2.Duplict_Insert(sublists_num,memory_sublists_size,file_address,br_init);
+        phase2.duplictInsert(subListsNum,memorySubListsSize,fileAddress,brInit);
 
     }
 
 
     /**
      * Remove duplicated data and insert new data
-     * @param sublists_num
-     * @param memory_sublists_size
-     * @param file_address
-     * @param br_pointer
+     * @param subListsNum
+     * @param memorySubListsSize
+     * @param fileAddress
+     * @param brPointer
      * @throws IOException
      */
-    public void Duplict_Insert( int sublists_num, int memory_sublists_size, String[] file_address, BufferedReader[] br_pointer) throws IOException{
-        Phase2_Operation po = new Phase2_Operation();
+    public void duplictInsert( int subListsNum, int memorySubListsSize, String[] fileAddress, BufferedReader[] brPointer) throws IOException{
+        Phase2Operation po = new Phase2Operation();
         //init n blocks in memory
-        List <List<String>> memory_sublists_list = po.init(sublists_num);
+        List <List<String>> memorySubListsList = po.init(subListsNum);
         //buffer list in memory
-        List <String> buffer_list = new ArrayList<>();
-        List <String> first_line = new ArrayList<>();
+        List <String> bufferList = new ArrayList<>();
+        List <String> firstLine = new ArrayList<>();
 
         while (true){
             //add data to memory
-            for (int index=0;index<sublists_num;index++){
-                if (memory_sublists_list.get(index).size() == 0){
-                    Map<List<String>,BufferedReader[]> map = po.Fetch_Sublist(file_address,index,br_pointer,memory_sublists_size);
+            for (int index=0;index<subListsNum;index++){
+                if (memorySubListsList.get(index).size() == 0){
+                    Map<List<String>,BufferedReader[]> map = po.fetchSublist(fileAddress,index,brPointer,memorySubListsSize);
                     Map.Entry<List<String>,BufferedReader[]> result = map.entrySet().iterator().next();
-                    memory_sublists_list.set(index,result.getKey());
-                    br_pointer = result.getValue();
+                    memorySubListsList.set(index,result.getKey());
+                    brPointer = result.getValue();
                 }
             }
 
             // create the first line to compare
-            first_line = new ArrayList<>();
-            for (int i=0;i<sublists_num;i++){
-                first_line.add(memory_sublists_list.get(i).get(0));
+            firstLine = new ArrayList<>();
+            for (int i=0;i<subListsNum;i++){
+                firstLine.add(memorySubListsList.get(i).get(0));
             }
 
             //get the index of biggest value
-            int max_index;
-            max_index = po.Max_Index(first_line,sublists_num);
-            if (max_index == -1){
+            int maxIndex;
+            maxIndex = po.maxIndex(firstLine,subListsNum);
+            if (maxIndex == -1){
                 break;
             }
 
             //get the line of biggest value
-            String max_line;
-            max_line = memory_sublists_list.get(max_index).get(0);
+            String maxLine;
+            maxLine = memorySubListsList.get(maxIndex).get(0);
 
-            //process buffer_list
-            buffer_list = po.Buffer_Process(buffer_list,max_line,memory_sublists_size);
+            //process bufferList
+            bufferList = po.bufferProcess(bufferList,maxLine,memorySubListsSize);
 
             //remove the biggest line in block of memory
-            memory_sublists_list.get(max_index).remove(0);
+            memorySubListsList.get(maxIndex).remove(0);
         }
         //process the last sublist
-        if (buffer_list != null){
-            po.OutputFile(buffer_list);
+        if (bufferList != null){
+            po.outputFile(bufferList);
         }
     }
 
     /**
-     *Define sublists_num, sublists_size and memory_sublists_size
+     *Define subListsNum, subListsSize and subListsSize
      * @param totalMemory
      * @return
      * @throws IOException
      */
-    public int[] Config(long totalMemory) throws IOException{
+    public int[] config(long totalMemory) throws IOException{
 
-        Phase2_Operation po = new Phase2_Operation();
-        int sublists_size = po.Sublist_size();
+        Phase2Operation po = new Phase2Operation();
+        int sublistSize = po.sublistSize();
 
         int[] param = new int[3];
         String[] content = new File(Configuration.TEMP_CONTENT).list();
 
         assert content != null;
-        //sublists_num
+        //subListsNum
         param[0] = Phase1.fileNum - 1;
-        //sublists_size
-        param[1] = sublists_size;
-        //memory_sublists_size(sublist, buffereader, buffer_list and others in memeory)
+        //subListsSize
+        param[1] = sublistSize;
+        //subListsSize(sublist, bufferReader, bufferList and others in memory)
         param[2] = (int) (totalMemory/Configuration.TUPLE_SIZE / (param[0]*5));
         return param;
     }

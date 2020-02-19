@@ -25,23 +25,23 @@ public class Phase1 {
 
         //add the data into the sublist
         String line = "";
-        int sublist_size = (int) (totalMemory / Configuration.TUPLE_SIZE/4/40)*40 ;
+        int subListSize = (int) (totalMemory / Configuration.TUPLE_SIZE/4/40)*40 ;
         List<String> subList = new ArrayList<>();
         while((line = br.readLine())!=null){
             subList.add(line);
-            if(subList.size()==sublist_size){
+            if(subList.size()==subListSize){
                 sort.quickSort(subList,0,subList.size()-1);
                 String addStr = Configuration.TEMP_PATH+fileNum+".txt";
-                phase.OutputDiffFiles(subList,addStr);
+                phase.outputDiffFiles(subList,addStr);
                 subList = new ArrayList<>();
-                blockNum+=sublist_size/40;
+                blockNum+=subListSize/40;
                 fileNum++;
             }
         }
         if(subList.size()>0){
             sort.quickSort(subList,0,subList.size()-1);
             String addStr = Configuration.TEMP_PATH+fileNum+".txt";
-            phase.OutputDiffFiles(subList,addStr);
+            phase.outputDiffFiles(subList,addStr);
             int num = subList.size()%40==0?subList.size()/40:subList.size()/40+1;
             blockNum+=num;
             fileNum++;
@@ -55,7 +55,7 @@ public class Phase1 {
      * @param subList
      * @param address
      */
-    public void OutputDiffFiles(List<String> subList,String address) throws IOException {
+    public void outputDiffFiles(List<String> subList,String address) throws IOException {
         FileWriter fw = new FileWriter(address);
         PrintWriter pw = new PrintWriter(fw);
         for(String str:subList){

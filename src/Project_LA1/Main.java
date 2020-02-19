@@ -26,28 +26,28 @@ public class Main {
         Phase1.timeFlag=1;
         phase1.start(totalMemory);
         Date date2 = new Date();
-        long file_time1;
-        file_time1 = date2.getTime()-date1.getTime();
-        System.out.println("phase1 time:"+file_time1);
+        long fileTime1;
+        fileTime1 = date2.getTime()-date1.getTime();
+        System.out.println("phase1 time:"+fileTime1);
 
         //step2
         Date date3 = new Date();
         phase2.start(totalMemory);
         Date date4 = new Date();
-        long file_time2;
-        file_time2 = date4.getTime()-date3.getTime();
-        System.out.println("phase2 time:"+ file_time2);
+        long fileTime2;
+        fileTime2 = date4.getTime()-date3.getTime();
+        System.out.println("phase2 time:"+ fileTime2);
 
         //conclusion
-        long total_time = file_time1 + file_time2;
-        int lines = Get_Line();
-        int block_num = Phase1.blockNum;
-        Delete_Temp();
+        long totalTime = fileTime1 + fileTime2;
+        int lines = getLineNum();
+        int blockNum = Phase1.blockNum;
+        deleteTemp();
 
-        System.out.println("total time:"+ total_time);
+        System.out.println("total time:"+ totalTime);
         System.out.println("total lines:"+ lines);
-        System.out.println("total blocks:"+ block_num);
-        System.out.println("io times:"+ block_num*4);
+        System.out.println("total blocks:"+ blockNum);
+        System.out.println("io times:"+ blockNum*4);
     }
 
     /**
@@ -55,7 +55,7 @@ public class Main {
      * @return
      * @throws IOException
      */
-    public static int Get_Line() throws IOException{
+    public static int getLineNum() throws IOException{
         FileReader fr = new FileReader(Configuration.PHASE2_OUTPUT);
         BufferedReader br = new BufferedReader(fr);
         int lines = 0;
@@ -69,7 +69,7 @@ public class Main {
      * delete useless files
      * @throws IOException
      */
-    public static void Delete_Temp() throws  IOException{
+    public static void deleteTemp() throws  IOException{
         File file = new File(Configuration.TEMP_CONTENT);
         File[] content = file.listFiles();
         for (File temp : content){
