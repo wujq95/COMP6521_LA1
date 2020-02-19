@@ -22,7 +22,7 @@ public class Phase2_Operation {
     }
 
     /**
-     *
+     * init buffereader
      * @param sublists_num
      * @param file_address
      * @return
@@ -39,7 +39,7 @@ public class Phase2_Operation {
     }
 
     /**
-     *
+     * init memory_sublists_list
      * @param sublits_num
      * @return
      * @throws IOException
@@ -54,7 +54,7 @@ public class Phase2_Operation {
     }
 
     /**
-     *
+     * read new sublist from disk to memory and compute the position of br pointer
      * @param file_address
      * @param index
      * @param br_pointer
@@ -86,7 +86,7 @@ public class Phase2_Operation {
     }
 
     /**
-     *
+     * compute the max sublist index
      * @param first_line
      * @param sublists_num
      * @return
@@ -113,7 +113,7 @@ public class Phase2_Operation {
     }
 
     /**
-     *
+     * remove duplicate and add new line to buffer list then save it to disk
      * @param buffer_list
      * @param max_line
      * @param memory_sublists_size
@@ -152,7 +152,7 @@ public class Phase2_Operation {
     }
 
     /**
-     *
+     * save sublist to disk
      * @param subList
      * @throws IOException
      */
@@ -168,7 +168,7 @@ public class Phase2_Operation {
     }
 
     /**
-     *
+     * init output file
      * @throws IOException
      */
     public void File_Init() throws IOException {
@@ -177,7 +177,7 @@ public class Phase2_Operation {
     }
 
     /**
-     *
+     * compute the size of every sublist
      * @return
      * @throws IOException
      */

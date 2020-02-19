@@ -29,21 +29,20 @@ public class Phase2 {
         //init pointer
         BufferedReader[] br_init = po.Buffer_Init(sublists_num,file_address);
 
-        phase2.Duplict_Insert(sublists_num,sublists_size,memory_sublists_size,file_address,br_init);
+        phase2.Duplict_Insert(sublists_num,memory_sublists_size,file_address,br_init);
 
     }
 
 
     /**
-     *
+     * Remove duplicated data and insert new data
      * @param sublists_num
-     * @param sublists_size
      * @param memory_sublists_size
      * @param file_address
      * @param br_pointer
      * @throws IOException
      */
-    public void Duplict_Insert( int sublists_num,int sublists_size, int memory_sublists_size, String[] file_address, BufferedReader[] br_pointer) throws IOException{
+    public void Duplict_Insert( int sublists_num, int memory_sublists_size, String[] file_address, BufferedReader[] br_pointer) throws IOException{
         Phase2_Operation po = new Phase2_Operation();
         //init n blocks in memory
         List <List<String>> memory_sublists_list = po.init(sublists_num);
@@ -92,7 +91,7 @@ public class Phase2 {
     }
 
     /**
-     *
+     *Define sublists_num, sublists_size and memory_sublists_size
      * @param totalMemory
      * @return
      * @throws IOException
