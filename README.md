@@ -3,7 +3,7 @@
 ### Description
 This is the first lab project of course COMP6521. The purpose is to realize the merge and deduplication of two files with the same format, and analyze the time and io number of the process.
 
-### Config
+### Configuration
 1. Language: Java
 2. Algorithm: TPMMS
 3. Test Framework: JUnit
