@@ -1,10 +1,12 @@
 package Project_LA1;
 
+import javafx.util.Pair;
+
 import java.io.*;
 import java.util.*;
 
 public class Phase2 {
-    
+
     /**
      * phase2 start method
      * @param totalMemory
@@ -29,7 +31,7 @@ public class Phase2 {
         //init pointer
         BufferedReader[] brInit = po.bufferInit(subListsNum,fileAddress);
 
-        phase2.duplictInsert(subListsNum,memorySubListsSize,fileAddress,brInit);
+        phase2.duplicateInsert(subListsNum,memorySubListsSize,brInit);
 
     }
 
@@ -38,11 +40,11 @@ public class Phase2 {
      * Remove duplicated data and insert new data
      * @param subListsNum
      * @param memorySubListsSize
-     * @param fileAddress
+
      * @param brPointer
      * @throws IOException
      */
-    public void duplictInsert( int subListsNum, int memorySubListsSize, String[] fileAddress, BufferedReader[] brPointer) throws IOException{
+    public void duplicateInsert( int subListsNum, int memorySubListsSize, BufferedReader[] brPointer) throws IOException{
         Phase2Operation po = new Phase2Operation();
         //init n blocks in memory
         List <List<String>> memorySubListsList = po.init(subListsNum);
@@ -54,10 +56,11 @@ public class Phase2 {
             //add data to memory
             for (int index=0;index<subListsNum;index++){
                 if (memorySubListsList.get(index).size() == 0){
-                    Map<List<String>,BufferedReader[]> map = po.fetchSublist(fileAddress,index,brPointer,memorySubListsSize);
-                    Map.Entry<List<String>,BufferedReader[]> result = map.entrySet().iterator().next();
-                    memorySubListsList.set(index,result.getKey());
-                    brPointer = result.getValue();
+                    BufferedReader br = brPointer[index];
+                    Pair<BufferedReader,List<String>> pair  =  po.fetchSublist(br,memorySubListsSize);
+                    BufferedReader br2 =pair.getKey();
+                    brPointer[index] = br2;
+                    memorySubListsList.set(index,pair.getValue());
                 }
             }
 

@@ -1,10 +1,10 @@
 package Project_LA1;
 
+import javafx.util.Pair;
+
 import java.io.*;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class Phase2Operation {
 
@@ -14,7 +14,7 @@ public class Phase2Operation {
      * @return
      * @throws IOException
      */
-    public  String[] fileAddress(int subListsNum) throws IOException{
+    public  String[] fileAddress(int subListsNum){
         String[] fileAddress = new String[subListsNum];
         for (int i=1;i<=subListsNum;i++){
             fileAddress[i-1] = Configuration.TEMP_PATH + i + ".txt";
@@ -56,17 +56,14 @@ public class Phase2Operation {
 
     /**
      * read new sublist from disk to memory and compute the position of br pointer
-     * @param fileAddress
-     * @param index
-     * @param brPointer
+     * @param br
      * @param fetchNum
      * @return
      * @throws IOException
      */
-    public Map<List<String>,BufferedReader[]> fetchSublist(String[] fileAddress, int index, BufferedReader[] brPointer, int fetchNum) throws IOException {
-        Map<List<String>,BufferedReader[]> map= new HashMap<>();
+    public Pair<BufferedReader,List<String>> fetchSublist(BufferedReader br, int fetchNum) throws IOException {
+
         List<String> fetchSubList = new ArrayList<>();
-        BufferedReader br = brPointer[index];
         String txt = "";
         for (int lines = 0; lines< fetchNum; lines++){
             txt = br.readLine();
@@ -78,11 +75,10 @@ public class Phase2Operation {
             else{
                 fetchSubList.add(txt);
             }
-
         }
-        brPointer[index] = br;
-        map.put(fetchSubList,brPointer);
-        return  map;
+
+        Pair<BufferedReader,List<String>> pair = new Pair<>(br,fetchSubList);
+        return  pair;
     }
 
     /**
@@ -92,7 +88,7 @@ public class Phase2Operation {
      * @return
      * @throws IOException
      */
-    public int maxIndex (List<String> firstLine,int subListsNum) throws IOException {
+    public int maxIndex (List<String> firstLine,int subListsNum){
         int maxIndex = 0;
         int[] myList = new int[subListsNum];
         for (int i=0; i<subListsNum;i++){
@@ -110,6 +106,17 @@ public class Phase2Operation {
             return -1;
         }
         return maxIndex;
+    }
+
+    /**
+     * init output file
+     * @throws IOException
+     */
+    public void fileInit() throws IOException {
+        FileWriter fw  = new FileWriter(Configuration.PHASE2_OUTPUT);
+        PrintWriter pw = new PrintWriter(fw);
+        pw.close();
+        fw.close();
     }
 
     /**
@@ -168,18 +175,6 @@ public class Phase2Operation {
     }
 
     /**
-     * init output file
-     * @throws IOException
-     */
-    public void fileInit() throws IOException {
-        FileWriter fw  = new FileWriter(Configuration.PHASE2_OUTPUT);
-        PrintWriter pw = new PrintWriter(fw);
-        //pw.println("");
-        pw.close();
-        fw.close();
-    }
-
-    /**
      * compute the size of every sublist
      * @return
      * @throws IOException
@@ -195,20 +190,3 @@ public class Phase2Operation {
         return lines;
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
