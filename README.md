@@ -1,6 +1,6 @@
 # COMP6521_LA1
 
-### config
+### Config
 1. language: java
 2. algorithm: TPMMS
 
