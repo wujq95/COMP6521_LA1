@@ -174,7 +174,7 @@ public class Phase2Operation {
     public void fileInit() throws IOException {
         FileWriter fw  = new FileWriter(Configuration.PHASE2_OUTPUT);
         PrintWriter pw = new PrintWriter(fw);
-        pw.println("");
+        //pw.println("");
         pw.close();
         fw.close();
     }

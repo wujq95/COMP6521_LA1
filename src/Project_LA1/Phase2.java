@@ -4,7 +4,7 @@ import java.io.*;
 import java.util.*;
 
 public class Phase2 {
-
+    
     /**
      * phase2 start method
      * @param totalMemory
