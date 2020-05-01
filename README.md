@@ -1,8 +1,8 @@
 # COMP6521_LA1
 
 ### Config
-1. language: java
-2. algorithm: TPMMS
+1. Language: java
+2. Algorithm: TPMMS
 
 ### TPMMS
 #### Phase 1
