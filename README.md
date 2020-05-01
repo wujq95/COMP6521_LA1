@@ -1,13 +1,12 @@
 # COMP6521_LA1
 
 ### Description
-This is the first lab project of course COMP6521. The purpose is to realize the merge and deduplication of two files with the same format, and analyze the time and io number of the process.
+This is the first lab project of course COMP6521. The purpose is to merge and deduplicate two files with the same format, and analyze the time and io number of the process. The line number of files are about 1000,000 and 500,000. They need to be put in the file `/src/Data_Files`.
 
 ### Configuration
 1. Language: Java
 2. Algorithm: Two_Phase Multiway Merge Sort(TPMMS)
 3. Test Framework: JUnit4
-4. Original Files: The line number of files are about 1000,000 and 500,000. They need to be put in the file `/src/Data_Files`.
 
 ### TPMMS
 #### Phase 1
