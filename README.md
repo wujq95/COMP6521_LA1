@@ -6,6 +6,8 @@ This is the first lab project of course COMP6521. The purpose is to realize the 
 ### Config
 1. Language: Java
 2. Algorithm: TPMMS
+3. Test Framework: JUnit
+4. Original Files: The line number of files are about 1000,000 and 500,000. They need to be put in the file `/src/Data_Files`.
 
 ### TPMMS
 #### Phase 1
