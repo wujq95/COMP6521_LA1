@@ -8,7 +8,7 @@ This is the first lab project of course COMP6521. The purpose is to merge and de
 2. Algorithm: Two_Phase Multiway Merge Sort(TPMMS)
 3. Test Framework: JUnit4
 
-### TPMMS
+### Project Implementation
 #### Phase 1
 Sort main memory-sized partitions to produce the sorted sublists.
 1. compute how many tuples a block can hold. 
