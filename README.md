@@ -1,6 +1,6 @@
 # COMP6521_LA1
 
-## Description
+## Introduction
 This is the first lab project of course COMP6521. The purpose is to merge and deduplicate two files with the same format and analyze the time and io number of the process. The line number of files is about 1000,000 and 500,000. They need to be put in the file `/src/Data_Files`.
 
 ## Configuration
