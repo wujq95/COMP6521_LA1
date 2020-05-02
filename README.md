@@ -1,14 +1,14 @@
 # COMP6521_LA1
 
-### Description
+## Description
 This is the first lab project of course COMP6521. The purpose is to merge and deduplicate two files with the same format and analyze the time and io number of the process. The line number of files is about 1000,000 and 500,000. They need to be put in the file `/src/Data_Files`.
 
-### Configuration
+## Configuration
 1. Language: Java
 2. Algorithm: Two_Phase Multiway Merge Sort(TPMMS)
 3. Test Framework: JUnit4
 
-### Implementation
+## Implementation
 #### Phase 1
 Sort main memory-sized partitions to produce the sorted sublists.
 1. compute how many tuples a block can hold. 
