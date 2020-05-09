@@ -5,7 +5,7 @@ This is the first lab project of course COMP6521. The purpose is to merge and de
 
 ## Configuration
 1. Language: Java
-2. Algorithm: Two_Phase Multiway Merge Sort(TPMMS)
+2. Algorithm: Two Phase Multiway Merge Sort(TPMMS)
 3. Test Framework: JUnit4
 
 ## Implementation
